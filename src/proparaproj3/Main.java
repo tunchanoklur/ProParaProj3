@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.util.*;
 
 public class Main extends JFrame{
+    
+    //components
     private JPanel contentpane;
     private JLabel drawpane;
     private MyImageIcon main_bg;
