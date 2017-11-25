@@ -27,6 +27,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        group1 = new javax.swing.ButtonGroup();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
@@ -48,7 +49,9 @@ public class NewJFrame1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        group1.add(jRadioButton1);
         jRadioButton1.setText("\"Donald duck\"");
+        jRadioButton1.setMaximumSize(null);
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -57,16 +60,20 @@ public class NewJFrame1 extends javax.swing.JFrame {
         getContentPane().add(jRadioButton1);
         jRadioButton1.setBounds(1504, 403, 210, 120);
 
+        group1.add(jRadioButton2);
         jRadioButton2.setText("\"Cheshire\" ");
+        jRadioButton2.setMaximumSize(null);
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(115, 403, 128, 111);
+        jRadioButton2.setBounds(160, 370, 128, 111);
 
+        group1.add(jRadioButton3);
         jRadioButton3.setText("\"Jasmine\" ");
+        jRadioButton3.setMaximumSize(null);
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -75,16 +82,20 @@ public class NewJFrame1 extends javax.swing.JFrame {
         getContentPane().add(jRadioButton3);
         jRadioButton3.setBounds(600, 340, 128, 111);
 
+        group1.add(jRadioButton4);
         jRadioButton4.setText("\"Ariel\" ");
+        jRadioButton4.setMaximumSize(null);
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton4ActionPerformed(evt);
             }
         });
         getContentPane().add(jRadioButton4);
-        jRadioButton4.setBounds(1039, 403, 128, 111);
+        jRadioButton4.setBounds(1040, 360, 128, 111);
 
+        group1.add(jRadioButton5);
         jRadioButton5.setText("\"Chip Dale\"");
+        jRadioButton5.setMaximumSize(null);
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton5ActionPerformed(evt);
@@ -93,7 +104,9 @@ public class NewJFrame1 extends javax.swing.JFrame {
         getContentPane().add(jRadioButton5);
         jRadioButton5.setBounds(130, 790, 128, 111);
 
+        group1.add(jRadioButton6);
         jRadioButton6.setText("\"Tazans\"");
+        jRadioButton6.setMaximumSize(null);
         jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton6ActionPerformed(evt);
@@ -102,7 +115,9 @@ public class NewJFrame1 extends javax.swing.JFrame {
         getContentPane().add(jRadioButton6);
         jRadioButton6.setBounds(1534, 766, 128, 111);
 
+        group1.add(jRadioButton7);
         jRadioButton7.setText("\"Pinochio");
+        jRadioButton7.setMaximumSize(null);
         jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton7ActionPerformed(evt);
@@ -111,7 +126,9 @@ public class NewJFrame1 extends javax.swing.JFrame {
         getContentPane().add(jRadioButton7);
         jRadioButton7.setBounds(620, 790, 128, 111);
 
+        group1.add(jRadioButton8);
         jRadioButton8.setText("\"Judy\"");
+        jRadioButton8.setMaximumSize(null);
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton8ActionPerformed(evt);
@@ -151,12 +168,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/char_cheshire.png"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 130, 380, 210);
+        jLabel3.setBounds(50, 110, 380, 210);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\char_selected_wall.png")); // NOI18N
-        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1990, 1000);
+        jLabel1.setBounds(0, 0, 1990, 1010);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -229,6 +245,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup group1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
