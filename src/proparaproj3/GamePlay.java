@@ -9,40 +9,39 @@ public class GamePlay extends JFrame {
     // components
     private JPanel contentpane;
     private JLabel drawpane;
-    private JComboBox combo;
-    private JToggleButton[] tb;
-    private JButton jumpButton, stopButton;
-    private JTextField scoreText;
-    private JLabel characterLabel, coneLabel;
-    private MyImageIcon backgroundImg, characterImg, coneImg;
-    private ButtonGroup bgroup;
+    private JTextField scoreText,Time;
+    private JLabel characterLabel, dropLabel[],specialLabel[];
+    private MyImageIcon backgroundImg, characterImg, dropImg[],specialImg[];
     private SoundEffect hitSound, themeSound;
-    private Random rand = new Random();
+    
     // working variables - adjust the values as you want
-    private int frameWidth = 1500, frameHeight = 750;
+    private Random rand = new Random();
+    private DropCharacter dropclass[];
+    private SpecialItem specialclass[];
+    final private int frameWidth = 2000, frameHeight = 1000;
     private int characterWidth = 180, characterHeight = 250;
-    private int characterCurX = 700, characterCurY = 250;
-    private int coneWidth = 150, coneHeight = 150;
-    private int coneCurX = 0, coneCurY = 0;
-    private int time=45;
-    private int zombieSpeed = 1000, coneSpeed = 700;
-    private boolean forward = true, jump = false, walk = true;
-    private boolean playhitsound =true;
+    private int characterCurX = 700,characterspeed=20;
+    private int dropWidth = 60, dropHeight = 60;
+    private int dropCurX = 0;
+    private int time=60;
+    private boolean playhitsound =true,playing=true;
     private boolean left =false, right=false;
     private int score;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new GamePlay();
     }
 
     //////////////////////////////////////////////////////////////////////////
-    public GamePlay() {
-        setTitle("Catch Me : Game Play");
+    public GamePlay() throws InterruptedException{
+        setTitle("Catch Me : Disney");
         setBounds(50, 50, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
+
+        // (1) Add WindowListener (anonymous) 
+        //     -- stop theme song & show total score when closing frame
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
         addWindowListener( new MyWindowListener() );
@@ -51,11 +50,19 @@ public class GamePlay extends JFrame {
     }
 
     /////////////////////////////////////////////////////////////////////////
-    public void AddComponents(){
+    public void AddComponents() throws InterruptedException {
         //add image
-        backgroundImg = new MyImageIcon("andy's_room.png").resize(contentpane.getWidth(),contentpane.getHeight());
-        characterImg = new MyImageIcon("user_cat.png")/*.resize(characterWidth, characterHeight)*/;
-        coneImg = new MyImageIcon("./project_pic/tsum/tsum0.jpg");
+        backgroundImg = new MyImageIcon("picture/wallpaper/option_wall.png").resize(contentpane.getWidth(),contentpane.getHeight());
+        characterImg = new MyImageIcon("picture/user_icon/user_cat.png");
+        dropImg = new MyImageIcon[14];
+        for(int i=0;i<14;i++){
+            dropImg[i] = new MyImageIcon("picture/tsum/tsum"+i+".png").resize(dropWidth,dropHeight);
+        }
+        specialImg = new MyImageIcon[3];
+        for(int i=0;i<3;i++){
+            specialImg[i] = new MyImageIcon("picture/tsum/special"+i+".gif");
+        }
+        
 
         //add backgound
         drawpane = new JLabel();
@@ -87,39 +94,85 @@ public class GamePlay extends JFrame {
         });
 
         characterLabel = new JLabel(characterImg);
-        characterLabel.setBounds(characterCurX, frameHeight-characterHeight, characterWidth, characterHeight);
+        characterLabel.setBounds(characterCurX, frameHeight-characterHeight-50, characterWidth, characterHeight);
         drawpane.add(characterLabel);
 
-        coneLabel = new JLabel(coneImg);
-        coneLabel.setBounds(rand.nextInt(frameWidth-coneWidth) + 0,-106, coneWidth, coneHeight );
-        drawpane.add(coneLabel);
+        dropLabel = new JLabel[10];
+        for(int i=0;i<10;i++){
+            int new_tsum = rand.nextInt(14) + 0;
+            dropLabel[i]= new JLabel(dropImg[new_tsum]);
+            dropLabel[i].setBounds(dropCurX,-dropHeight, dropWidth, dropHeight );
+            drawpane.add(dropLabel[i]);
+        }
+        
+        specialLabel = new JLabel[1];
+        specialclass = new SpecialItem[1];
 
-        hitSound = new SoundEffect("loser.wav");
-        themeSound = new SoundEffect("toystory.wav");
+        int new_special = rand.nextInt(3) + 0;
+        specialLabel[0] = new JLabel(specialImg[new_special]);
+        specialLabel[0].setBounds(rand.nextInt(frameWidth - 150), -150,150,150);
+        specialclass[0] = new SpecialItem(new_special);
+        drawpane.add(specialLabel[0]);
+        
+        hitSound = new SoundEffect("sound/wingwing.wav");
+        themeSound = new SoundEffect("sound/toystory.wav");
         themeSound.playLoop();
-
-        setConeThread();
-        validate();
-
+        
+        Time = new JTextField(Integer.toString(time),5);
+        Time.setEditable(false);
         scoreText = new JTextField("0", 5);
         scoreText.setEditable(false);
 
         JPanel control = new JPanel();
         control.setBounds(0, 0, 1000, 50);
         control.add(new JLabel("                 "));
+        control.add(new JLabel("Time  : "));
+        control.add(Time);
+        control.add(new JLabel("                 "));
         control.add(new JLabel("Score : "));
         control.add(scoreText);
         contentpane.add(control, BorderLayout.NORTH);
         contentpane.add(drawpane, BorderLayout.CENTER);
+        repaint();
+        validate();
+        
+        dropclass =new DropCharacter[10];
+        for(int i=0;i<10;i++){
+            dropclass[i] = new DropCharacter(i);
+            dropclass[i].start();
+            try {
+                Thread.sleep(125);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        specialclass[0].start();
+        setTimeThread();
         validate();
     }
 
-    //////////////////////////////////////////////////////////////////////////
-    public void setCharacterThread() {
-        Thread zombieThread = new Thread() {
+    ////////////////////////////////Time Thread//////////////////////////////////
+    public void setTimeThread() {
+        Thread timeThread = new Thread() {
             public void run() {
-                while(time!=0) {
-                    // (6) Add code to update Zombie's location
+                while(time>0) {
+                    time -= 1;
+                    try {
+                        Thread.sleep(1000);
+                    }
+                    catch (InterruptedException e){ e.printStackTrace(); }
+                    Time.setText(Integer.toString(time));
+                    validate();
+                }playing=false;
+            } // end run
+        }; // end thread creation
+        timeThread.start();
+    }
+    /////////////////////////////Character Thread////////////////////////////////
+    public void setCharacterThread() {
+        Thread characterThread = new Thread() {
+            public void run() {
+                while(playing) {
                     if(left){
                         characterCurX-=5;
                         if(characterCurX+characterWidth<0)characterCurX=frameWidth;
@@ -130,10 +183,8 @@ public class GamePlay extends JFrame {
                     }
                     characterLabel.setBounds(characterCurX, frameHeight-characterHeight-50,characterWidth, characterHeight);
                     repaint();
-                    collision();
-
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(characterspeed);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -141,46 +192,115 @@ public class GamePlay extends JFrame {
                 } // end while
             } // end run
         }; // end thread creation
-        zombieThread.start();
+        characterThread.start();
     }
-
-    //////////////////////////////////////////////////////////////////////////
-    public void setConeThread() {
-        Thread coneThread = new Thread() {
-            public void run() {
-                while (true) {
-                    // (7) Add code to update cone's location
-                    coneCurY+=10;
-                        if(coneCurY+106>=frameHeight){
-                            coneCurX = rand.nextInt(frameWidth-coneWidth) + 0;
-                            coneCurY=-106;
-                            //andom pi
+    ////////////////////////////Drop Class//////////////////////////////////////////////
+    class DropCharacter extends Thread{
+        int id,dropCurX,dropCurY,dropWidth = 60, dropHeight = 60,speed;
+        private DropCharacter(int id_in){
+            id=id_in;
+            dropCurX=rand.nextInt(frameWidth-dropWidth);
+            speed =rand.nextInt(100)+15;
+            dropCurY=-dropHeight;
+        }
+        public void run(){
+                while(playing){
+                    dropCurY+=5;
+                        if(dropCurY+dropHeight>=frameHeight){//unable to catch the tsum tsum
+                            time--;
+                            dropCurX = rand.nextInt(frameWidth-dropWidth) + 0;
+                            dropCurY=-dropHeight;
+                            int new_tsum = rand.nextInt(13) + 0;
+                            dropLabel[id].setIcon(dropImg[new_tsum]);
+                        try {
+                            Thread.sleep(10);
+                        } 
+                        catch (InterruptedException e) {}
                         }
-                    coneLabel.setBounds(coneCurX, coneCurY, coneWidth, coneHeight);
+                    dropLabel[id].setBounds(dropCurX, dropCurY, dropWidth, dropHeight);
                     repaint();
+                    this.collision();
                     try {
-                        Thread.sleep(125);
+                        Thread.sleep(this.speed);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 } // end while
             } // end run
-        }; // end thread creation
-        coneThread.start();
-    }
+        synchronized public void collision() {
+            if (characterLabel.getBounds().intersects(dropLabel[id].getBounds())) {
+                if(playhitsound)hitSound.playOnce();
+                dropCurY=frameHeight-dropHeight;
+                int new_tsum;
+                new_tsum = rand.nextInt(13) + 0;
+                dropLabel[id].setIcon(dropImg[new_tsum]);
+                score++;
+                scoreText.setText(Integer.toString(score));
+                validate();
+            }
+        }
+    };
+    ///////////////////////////////Special Items///////////////////////////////////////
+    class SpecialItem extends Thread {
+        private int id, specialCurX, specialCurY;
+        public SpecialItem(int id_in) {
+            id = id_in;
+            specialCurX = rand.nextInt(frameWidth - 150); //150 is an estimate size of all gif
+            specialCurY = -150;
+        }
+        public void run() {
+            while(playing) {
+                specialCurY += 10;
+                if(specialCurY+150>=frameHeight){//unable to catch the tsum tsum
+                            specialCurX = rand.nextInt(frameWidth-150) + 0;
+                            specialCurY=-150;
+                            id = rand.nextInt(3) + 0;
+                            specialLabel[0].setIcon(specialImg[id]);
+                        try {
+                            Thread.sleep(25);
+                        } 
+                        catch (InterruptedException e) {}
+                        }
+                specialLabel[0].setBounds(specialCurX, specialCurY,150,150);
+                repaint();
+                this.collision();
+                try {
+                    Thread.sleep(55);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } // end while
+        } // end run
 
-    //////////////////////////////////////////////////////////////////////////
-    synchronized public void collision() {
-        if (characterLabel.getBounds().intersects(coneLabel.getBounds())) {
-            // (8) If zombie and cone hit each other, play hit sound & update score
-            if(playhitsound)hitSound.playOnce();
-            coneCurY=frameHeight+10;
-            score++;
-            scoreText.setText(Integer.toString(score));
-            validate();
+        synchronized public void collision() {
+            if (characterLabel.getBounds().intersects(specialLabel[0].getBounds())) {
+                if (playhitsound) {
+                    hitSound.playOnce();
+                }
+                switch (this.id) {
+                    case 0:
+                        //bomb
+                        score -= 10;
+                        break;
+                    case 1:
+                        //hourglass
+                        time+=10;
+                        break;
+                    default:
+                        //lightning
+                        if(characterspeed>100)characterspeed-=30;
+                        break;
+                }
+                validate();
+                specialCurX = rand.nextInt(frameWidth-150) + 0;
+                specialCurY=-150;
+                id = rand.nextInt(3) + 0;
+                specialLabel[0].setIcon(specialImg[id]);
+                repaint();
+            }
         }
     }
-    
+    ///////////////////////////////////////////////////////////////////////////////////////
     class MyWindowListener extends WindowAdapter//when we open / close the frame
     {
         public void windowClosing(WindowEvent e) {
@@ -191,7 +311,7 @@ public class GamePlay extends JFrame {
             JOptionPane.showMessageDialog(
                     new JFrame(),
                     "Total Score = " + score,
-                    "The walking dead",
+                    "Catch Me : Disney",
                     JOptionPane.INFORMATION_MESSAGE);
         }
     };
