@@ -72,7 +72,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="group1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&quot;Jasmine&quot; "/>
+        <Property name="text" type="java.lang.String" value="&quot;Jasmine&quot; " postCode="jRadioButton3.setSize(100,100);"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="null"/>
         </Property>

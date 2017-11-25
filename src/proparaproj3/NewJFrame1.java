@@ -73,6 +73,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
 
         group1.add(jRadioButton3);
         jRadioButton3.setText("\"Jasmine\" ");
+        jRadioButton3.setSize(100,100);
         jRadioButton3.setMaximumSize(null);
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -14,7 +14,9 @@ import javax.swing.JButton;
  * @author po-pe
  */
 public class level_chose extends javax.swing.JFrame {
-
+private boolean moved = false;
+    private boolean clicked = false;
+    instruction     instr;
     /**
      * Creates new form level_chose
      */
@@ -31,67 +33,66 @@ public class level_chose extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        medbox = new javax.swing.JButton();
+        insbox = new javax.swing.JButton();
+        easybox = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/med_but.PNG"))); // NOI18N
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        medbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/med_but.PNG"))); // NOI18N
+        medbox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                medboxMouseClicked(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton1MouseReleased(evt);
+                medboxMouseReleased(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        medbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                medboxActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(920, 810, 200, 100);
+        getContentPane().add(medbox);
+        medbox.setBounds(920, 810, 200, 100);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/ins_but.PNG"))); // NOI18N
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        insbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/ins_but.PNG"))); // NOI18N
+        insbox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                insboxMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        insbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                insboxActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(1600, 810, 200, 100);
+        getContentPane().add(insbox);
+        insbox.setBounds(1600, 810, 200, 100);
 
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\easy_but.PNG")); // NOI18N
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        easybox.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\easy_but.PNG")); // NOI18N
+        easybox.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                easyboxMouseMoved(evt);
+            }
+        });
+        easybox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                easyboxMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton3MouseEntered(evt);
+                easyboxMouseEntered(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        easybox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                easyboxActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(320, 810, 200, 100);
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/go_but.png"))); // NOI18N
-        jButton5.setText("jButton5");
-        getContentPane().add(jButton5);
-        jButton5.setBounds(250, 800, 180, 100);
+        getContentPane().add(easybox);
+        easybox.setBounds(240, 790, 200, 100);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\level_wall.png")); // NOI18N
         jLabel1.setText("jLabel1");
@@ -101,39 +102,55 @@ public class level_chose extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void medboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medboxActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_medboxActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void insboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_insboxActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void medboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medboxMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        if(evt.getClickCount()==1){
+           medbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("go_but.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }
+    }//GEN-LAST:event_medboxMouseClicked
 
-    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseEntered
+    private void insboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insboxMouseClicked
+        if(evt.getClickCount()==1){
+           insbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("go_but.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }
+    }//GEN-LAST:event_insboxMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void medboxMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medboxMouseReleased
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_medboxMouseReleased
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void easyboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_easyboxActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void easyboxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_easyboxMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_easyboxMouseEntered
 
-    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+    private void easyboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_easyboxMouseClicked
+        if(evt.getClickCount()==1){
+           easybox.setIcon(new javax.swing.ImageIcon(getClass().getResource("go_but.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }
+    }//GEN-LAST:event_easyboxMouseClicked
+
+    private void easyboxMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_easyboxMouseMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseReleased
+    }//GEN-LAST:event_easyboxMouseMoved
 
     /**
      * @param args the command line arguments
@@ -171,10 +188,9 @@ public class level_chose extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton easybox;
+    private javax.swing.JButton insbox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton medbox;
     // End of variables declaration//GEN-END:variables
 }
