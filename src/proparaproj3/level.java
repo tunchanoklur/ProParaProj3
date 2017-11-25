@@ -17,7 +17,7 @@ public class level extends JFrame{
 	public level()
 	{
 		setTitle("Chose level");
-		setBounds(50, 50, frameWidth, frameHeight);
+		setBounds(200, 100, frameWidth, frameHeight);
 		setVisible(true);
 		setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
                 
@@ -28,43 +28,65 @@ public class level extends JFrame{
                 contentpane.setIcon( background.resize(contentpane.getWidth(),
 			                                   contentpane.getHeight()) );
              
-		JButton [] bt = new JButton[4];
-                /* bt[0] = new JButton(new MyImageIcon ("easy_but.png"));
-		 bt[1] = new JButton(new MyImageIcon ("med_but.png"));
-		 bt[2] = new JButton(new MyImageIcon ("ins_but.png"));
-                */
-                 bt[0] = new JButton( "easy_but.png");
-		 bt[1] = new JButton ("med_but.png");
-		 bt[2] = new JButton ("ins_but.png");
-                contentpane.setLayout( null );
-                contentpane.add(bt[0], BorderLayout.NORTH); //add to the contentpane ;need to give the location
-		contentpane.add(bt[1], BorderLayout.CENTER); 
-		contentpane.add(bt[2], BorderLayout.SOUTH);
-                //repaint();
-                this.validate();
+           
+       GridLayout layout = new GridLayout();
+       getContentPane().setLayout(layout);
+       // 3x2
+       layout.setColumns(3);
+       layout.setRows(1);
+       layout.setHgap(50);
+       layout.setVgap(0);
+       /////////////////////////////
+       JButton button1 = new JButton(new MyImageIcon("easy_but.png"));
+       JButton button2 = new JButton( new MyImageIcon("med_but.png"));
+       JButton button3 = new JButton( new MyImageIcon("ins_but.png"));
+ 
+       button1.setPressedIcon(new MyImageIcon("easy_but.png"));
+       button2.setPressedIcon(new MyImageIcon("med_but.png"));
+       button3.setPressedIcon(new MyImageIcon("ins_but.png"));
+
+       button1.setDisabledIcon(new MyImageIcon("go_but.png"));
+       button1.addActionListener(new ActionListener()
+               {
+                   public void actionPerformed (ActionEvent event)
+                   {
+                       JButton button = (JButton) event.getSource();
+                       button.setEnabled (false);
+                   }
+               }
+       );
+       ////////////////////////
+       button2.setDisabledIcon(new MyImageIcon("go_but.png"));
+       button2.addActionListener(new ActionListener()
+               {
+                   public void actionPerformed (ActionEvent event)
+                   {
+                       JButton button = (JButton) event.getSource();
+                       button.setEnabled (false);
+                   }
+               }
+       );
+       /////////////
+       button3.setDisabledIcon(new MyImageIcon("go_but.png"));
+       button3.addActionListener(new ActionListener()
+               {
+                   public void actionPerformed (ActionEvent event)
+                   {
+                       JButton button = (JButton) event.getSource();
+                       button.setEnabled (false);
+                   }
+               }
+       );
+            getContentPane().add(button1);
+            getContentPane().add(button2);
+            getContentPane().add(button3);
+            pack();
+                setLayout(null);
+                setSize(2000,1000);
+                setLocationRelativeTo(null);
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                setVisible(true);
         }
         
 }
 
-class selection extends JLabel implements MouseListener
-{
-        private int curX  = 250, curY   = 300; //location of X , Y
-	private int width = 300, height = 300;
-
-   
-   
-    @Override
-    public void mouseClicked(MouseEvent me) {}
-
-    @Override
-    public void mousePressed(MouseEvent me) {}
-    @Override
-    public void mouseReleased(MouseEvent me) {}
-
-    @Override
-    public void mouseEntered(MouseEvent me) {}
-    @Override
-    public void mouseExited(MouseEvent me) {}
-	
-        
-}
