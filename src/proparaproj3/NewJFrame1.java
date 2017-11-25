@@ -14,6 +14,10 @@ public class NewJFrame1 extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame1
      */
+    private boolean moved = false;
+    private boolean clicked = false;
+    instruction     instr;
+    
     public NewJFrame1() {
         initComponents();
     }
@@ -28,14 +32,14 @@ public class NewJFrame1 extends javax.swing.JFrame {
     private void initComponents() {
 
         group1 = new javax.swing.ButtonGroup();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
+        dol = new javax.swing.JRadioButton();
+        cat = new javax.swing.JRadioButton();
+        jas = new javax.swing.JRadioButton();
+        ari = new javax.swing.JRadioButton();
+        chip = new javax.swing.JRadioButton();
+        tan = new javax.swing.JRadioButton();
+        pin = new javax.swing.JRadioButton();
+        jud = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -49,107 +53,162 @@ public class NewJFrame1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        group1.add(jRadioButton1);
-        jRadioButton1.setText("\"Donald duck\"");
-        jRadioButton1.setMaximumSize(null);
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+        group1.add(dol);
+        dol.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
+        dol.setForeground(new java.awt.Color(255, 204, 51));
+        dol.setText("\"Donald duck\"");
+        dol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/reddot.png"))); // NOI18N
+        dol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dolMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(1504, 403, 210, 120);
+        dol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dolActionPerformed(evt);
+            }
+        });
+        getContentPane().add(dol);
+        dol.setBounds(1560, 350, 370, 90);
 
-        group1.add(jRadioButton2);
-        jRadioButton2.setText("\"Cheshire\" ");
-        jRadioButton2.setMaximumSize(null);
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+        group1.add(cat);
+        cat.setFont(new java.awt.Font("Tempus Sans ITC", 1, 48)); // NOI18N
+        cat.setForeground(new java.awt.Color(255, 0, 204));
+        cat.setText("\"Cheshire\" ");
+        cat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/reddot.png"))); // NOI18N
+        cat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                catMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(160, 370, 128, 111);
+        cat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cat);
+        cat.setBounds(60, 330, 320, 120);
 
-        group1.add(jRadioButton3);
-        jRadioButton3.setText("\"Jasmine\" ");
-        jRadioButton3.setSize(100,100);
-        jRadioButton3.setMaximumSize(null);
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+        group1.add(jas);
+        jas.setFont(new java.awt.Font("Trajan Pro", 1, 48)); // NOI18N
+        jas.setText("\"Jasmine\" ");
+        jas.setSize(100,100);
+        jas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/reddot.png"))); // NOI18N
+        jas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jasMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton3);
-        jRadioButton3.setBounds(600, 340, 128, 111);
+        jas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jas);
+        jas.setBounds(600, 350, 360, 80);
 
-        group1.add(jRadioButton4);
-        jRadioButton4.setText("\"Ariel\" ");
-        jRadioButton4.setMaximumSize(null);
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+        group1.add(ari);
+        ari.setFont(new java.awt.Font("Segoe Print", 1, 48)); // NOI18N
+        ari.setForeground(new java.awt.Color(0, 204, 204));
+        ari.setText("\"Ariel\" ");
+        ari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/reddot.png"))); // NOI18N
+        ari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ariMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton4);
-        jRadioButton4.setBounds(1040, 360, 128, 111);
+        ari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ariActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ari);
+        ari.setBounds(1140, 340, 250, 100);
 
-        group1.add(jRadioButton5);
-        jRadioButton5.setText("\"Chip Dale\"");
-        jRadioButton5.setMaximumSize(null);
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+        group1.add(chip);
+        chip.setFont(new java.awt.Font("Showcard Gothic", 0, 48)); // NOI18N
+        chip.setForeground(new java.awt.Color(255, 102, 51));
+        chip.setText("\"Chip Dale\"");
+        chip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/reddot.png"))); // NOI18N
+        chip.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chipMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton5);
-        jRadioButton5.setBounds(130, 790, 128, 111);
+        chip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chipActionPerformed(evt);
+            }
+        });
+        getContentPane().add(chip);
+        chip.setBounds(40, 860, 360, 90);
 
-        group1.add(jRadioButton6);
-        jRadioButton6.setText("\"Tazans\"");
-        jRadioButton6.setMaximumSize(null);
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+        group1.add(tan);
+        tan.setFont(new java.awt.Font("Viner Hand ITC", 1, 48)); // NOI18N
+        tan.setForeground(new java.awt.Color(0, 102, 102));
+        tan.setText("\"Tazans\"");
+        tan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/reddot.png"))); // NOI18N
+        tan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tanMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton6);
-        jRadioButton6.setBounds(1534, 766, 128, 111);
+        tan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tan);
+        tan.setBounds(1650, 840, 300, 90);
 
-        group1.add(jRadioButton7);
-        jRadioButton7.setText("\"Pinochio");
-        jRadioButton7.setMaximumSize(null);
-        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton7ActionPerformed(evt);
+        group1.add(pin);
+        pin.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
+        pin.setForeground(new java.awt.Color(153, 102, 0));
+        pin.setText("\"Pinochio");
+        pin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/reddot.png"))); // NOI18N
+        pin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pinMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton7);
-        jRadioButton7.setBounds(620, 790, 128, 111);
+        pin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pin);
+        pin.setBounds(600, 860, 280, 70);
 
-        group1.add(jRadioButton8);
-        jRadioButton8.setText("\"Judy\"");
-        jRadioButton8.setMaximumSize(null);
-        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton8ActionPerformed(evt);
+        group1.add(jud);
+        jud.setFont(new java.awt.Font("Pahnto", 1, 60)); // NOI18N
+        jud.setForeground(new java.awt.Color(51, 102, 255));
+        jud.setText("\"Judy\"");
+        jud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/reddot.png"))); // NOI18N
+        jud.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                judMouseClicked(evt);
             }
         });
-        getContentPane().add(jRadioButton8);
-        jRadioButton8.setBounds(1039, 766, 128, 111);
+        jud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                judActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jud);
+        jud.setBounds(1220, 830, 200, 130);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/tazan.PNG"))); // NOI18N
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(1430, 500, 340, 280);
+        jLabel9.setBounds(1600, 490, 340, 280);
 
         jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\judy.PNG")); // NOI18N
         jLabel8.setText("jLabel8");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(940, 530, 260, 220);
+        jLabel8.setBounds(1130, 530, 260, 220);
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\char_pinoc.png")); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(570, 480, 230, 320);
+        jLabel7.setBounds(620, 480, 230, 320);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/char_chipdale.png"))); // NOI18N
         getContentPane().add(jLabel6);
@@ -157,19 +216,19 @@ public class NewJFrame1 extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\char_donaldduck.PNG")); // NOI18N
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(1470, 10, 310, 340);
+        jLabel4.setBounds(1620, 0, 310, 340);
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\char_jusmine.png")); // NOI18N
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(550, 0, 270, 370);
+        jLabel5.setBounds(640, -10, 270, 370);
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\char_arial.png")); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(1010, 30, 390, 320);
+        jLabel2.setBounds(1160, 10, 390, 320);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/char_cheshire.png"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(50, 110, 380, 210);
+        jLabel3.setBounds(60, 80, 380, 210);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\po-pe\\Desktop\\propara_project3\\char_selected_wall.png")); // NOI18N
         getContentPane().add(jLabel1);
@@ -178,37 +237,102 @@ public class NewJFrame1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void dolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dolActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_dolActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_catActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void jasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_jasActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void ariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ariActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_ariActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void chipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chipActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_chipActionPerformed
 
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+    private void tanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
+    }//GEN-LAST:event_tanActionPerformed
 
-    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+    private void pinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton7ActionPerformed
+    }//GEN-LAST:event_pinActionPerformed
 
-    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+    private void judActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_judActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton8ActionPerformed
+    }//GEN-LAST:event_judActionPerformed
+
+    private void catMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_catMouseClicked
+        if(evt.getClickCount()==1){
+            cat.setIcon(new javax.swing.ImageIcon(getClass().getResource("dot.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_catMouseClicked
+
+    private void jasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jasMouseClicked
+     if(evt.getClickCount()==1){
+            jas.setIcon(new javax.swing.ImageIcon(getClass().getResource("dot.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_jasMouseClicked
+
+    private void ariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ariMouseClicked
+if(evt.getClickCount()==1){
+            ari.setIcon(new javax.swing.ImageIcon(getClass().getResource("b_dot.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_ariMouseClicked
+
+    private void dolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dolMouseClicked
+if(evt.getClickCount()==1){
+            dol.setIcon(new javax.swing.ImageIcon(getClass().getResource("go_but.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_dolMouseClicked
+
+    private void chipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chipMouseClicked
+if(evt.getClickCount()==1){
+            chip.setIcon(new javax.swing.ImageIcon(getClass().getResource("reddot_1.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_chipMouseClicked
+
+    private void pinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pinMouseClicked
+if(evt.getClickCount()==1){
+            pin.setIcon(new javax.swing.ImageIcon(getClass().getResource("b_dot.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_pinMouseClicked
+
+    private void judMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_judMouseClicked
+if(evt.getClickCount()==1){
+            jud.setIcon(new javax.swing.ImageIcon(getClass().getResource("b_dot.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_judMouseClicked
+
+    private void tanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tanMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==1){
+           tan.setIcon(new javax.swing.ImageIcon(getClass().getResource("b_dot.png")));
+           instr = new instruction();
+           instr.setVisible(true);
+        }  
+    }//GEN-LAST:event_tanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -246,6 +370,10 @@ public class NewJFrame1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton ari;
+    private javax.swing.JRadioButton cat;
+    private javax.swing.JRadioButton chip;
+    private javax.swing.JRadioButton dol;
     private javax.swing.ButtonGroup group1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -256,13 +384,9 @@ public class NewJFrame1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jas;
+    private javax.swing.JRadioButton jud;
+    private javax.swing.JRadioButton pin;
+    private javax.swing.JRadioButton tan;
     // End of variables declaration//GEN-END:variables
 }
