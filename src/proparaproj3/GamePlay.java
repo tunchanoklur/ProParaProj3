@@ -27,11 +27,10 @@ public class GamePlay extends JFrame {
     private boolean playhitsound =true,playing=true;
     private boolean left =false, right=false;
     private int score;
-
+    
     public static void main(String[] args) throws InterruptedException {
         new GamePlay();
     }
-
     //////////////////////////////////////////////////////////////////////////
     public GamePlay() throws InterruptedException{
         setTitle("Catch Me : Disney");
@@ -40,8 +39,6 @@ public class GamePlay extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        // (1) Add WindowListener (anonymous) 
-        //     -- stop theme song & show total score when closing frame
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
         addWindowListener( new MyWindowListener() );
@@ -54,8 +51,8 @@ public class GamePlay extends JFrame {
         //add image
         backgroundImg = new MyImageIcon("picture/wallpaper/option_wall.png").resize(contentpane.getWidth(),contentpane.getHeight());
         characterImg = new MyImageIcon("picture/user_icon/user_cat.png");
-        dropImg = new MyImageIcon[14];
-        for(int i=0;i<14;i++){
+        dropImg = new MyImageIcon[22];
+        for(int i=0;i<22;i++){
             dropImg[i] = new MyImageIcon("picture/tsum/tsum"+i+".png").resize(dropWidth,dropHeight);
         }
         specialImg = new MyImageIcon[3];
@@ -70,25 +67,28 @@ public class GamePlay extends JFrame {
         drawpane.setLayout(null);
         
         //add key listener to handle move left - right
-        this.addKeyListener(new KeyListener() {
-            public void keyTyped(KeyEvent e) {
-            }
-
+        addKeyListener(new KeyListener() {
+            public void keyTyped(KeyEvent e) {}
+            //when press left-right
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    System.out.println("Pressing Left");
                     left=true;
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     right=true;
+                    System.out.println("Pressing Right");
                 }
             }
             //when we release, it stop
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     left=false;
+                    System.out.println("Release Left");
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     right=false;
+                    System.out.println("Release Right");
                 }
             }
         });
@@ -99,7 +99,7 @@ public class GamePlay extends JFrame {
 
         dropLabel = new JLabel[10];
         for(int i=0;i<10;i++){
-            int new_tsum = rand.nextInt(14) + 0;
+            int new_tsum = rand.nextInt(22) + 0;
             dropLabel[i]= new JLabel(dropImg[new_tsum]);
             dropLabel[i].setBounds(dropCurX,-dropHeight, dropWidth, dropHeight );
             drawpane.add(dropLabel[i]);
@@ -210,7 +210,7 @@ public class GamePlay extends JFrame {
                             time--;
                             dropCurX = rand.nextInt(frameWidth-dropWidth) + 0;
                             dropCurY=-dropHeight;
-                            int new_tsum = rand.nextInt(13) + 0;
+                            int new_tsum = rand.nextInt(22) + 0;
                             dropLabel[id].setIcon(dropImg[new_tsum]);
                         try {
                             Thread.sleep(10);
@@ -232,7 +232,7 @@ public class GamePlay extends JFrame {
                 if(playhitsound)hitSound.playOnce();
                 dropCurY=frameHeight-dropHeight;
                 int new_tsum;
-                new_tsum = rand.nextInt(13) + 0;
+                new_tsum = rand.nextInt(22) + 0;
                 dropLabel[id].setIcon(dropImg[new_tsum]);
                 score++;
                 scoreText.setText(Integer.toString(score));
