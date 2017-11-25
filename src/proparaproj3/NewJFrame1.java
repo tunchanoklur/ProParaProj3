@@ -121,7 +121,6 @@ public class NewJFrame1 extends javax.swing.JFrame {
         jRadioButton8.setBounds(1039, 766, 128, 111);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proparaproj3/tazan.PNG"))); // NOI18N
-        jLabel9.setText("jLabel9");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(1430, 500, 340, 280);
 
