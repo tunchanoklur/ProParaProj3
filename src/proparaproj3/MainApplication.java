@@ -7,11 +7,11 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Main extends JFrame{
+public class MainApplication extends JFrame{
     //pages
     GamePlay gameplay;
-    /*instruction     instructionPage;
-    creditpage      creditPage;
+    Instruction     instructionPage;
+    /*creditpage      creditPage;
     trophy          highscorePage;*/
     //components
     private JPanel contentpane;
@@ -24,13 +24,11 @@ public class Main extends JFrame{
     private MyImageIcon highscoreImg[] = new MyImageIcon[2];
     private SoundEffect main_sound;
     private int frameWidth = 2000, frameHeight = 1000;
-    private boolean moved = false;
-    private boolean clicked = false;
     
     public static void main(String[] args) {
-        new Main();
+        new MainApplication();
     }
-    public Main(){
+    public MainApplication(){
         setTitle("Catch Me : Disney");
         setBounds(50, 50, frameWidth, frameHeight);
         setResizable(false);
@@ -77,7 +75,7 @@ public class Main extends JFrame{
                         gameplay = new GamePlay();
                     }
                     catch (InterruptedException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(MainApplication.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 else gameplay.setVisible(true);
@@ -95,19 +93,11 @@ public class Main extends JFrame{
                 howtoButton.setIcon(howtoImg[0]);
             }
             public void mouseClicked(MouseEvent e) {
-                /*if(instructionPage==null){
-                    try {
-                        instructionPage = new instruction();
-                    }
-                    catch (InterruptedException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                else instructionPage.setVisible(true);
-                setVisible(false);//change visible of main to false*/
+                instructionPage = new Instruction();
+                //
             }
-            public void mousePressed(MouseEvent me) {}
-            public void mouseReleased(MouseEvent me) {}
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
         });
         
         highscoreButton.addMouseListener( new MouseListener(){
@@ -120,8 +110,8 @@ public class Main extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 /*Link to page highscore*/
             }
-            public void mousePressed(MouseEvent me) {}
-            public void mouseReleased(MouseEvent me) {}
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
         });
         
         creditButton.addMouseListener( new MouseListener(){
@@ -143,8 +133,8 @@ public class Main extends JFrame{
                 else instructionPage.setVisible(true);
                 setVisible(false);//change visible of main to false*/
             }
-            public void mousePressed(MouseEvent me) {}
-            public void mouseReleased(MouseEvent me) {}
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
         });
         playButton.setBounds(800,500,400,200);
         contentpane.add(playButton);
