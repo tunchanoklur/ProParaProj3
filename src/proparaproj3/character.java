@@ -23,24 +23,37 @@ public class character extends JFrame {
 
 	public character()
 	{
-            super("Show char");
-            JRadioButton ra0 = new JRadioButton ("Cheshire");
-       JRadioButton ra1 = new JRadioButton( "Jasmine");
-       JRadioButton ra2 = new JRadioButton( "Ariel");
-       JRadioButton ra3 = new JRadioButton( "Donald Duck");
-       JRadioButton ra4 = new JRadioButton( "Chip Dale");
-       JRadioButton ra5 = new JRadioButton( "Pinocchio");
-       JRadioButton ra6 = new JRadioButton( "Judy Hops");
-       JRadioButton ra7 = new JRadioButton( "Tazans");
+           // super("Show char");
+            setTitle("Chose player's character");
+		setBounds(50, 50, frameWidth, frameHeight);
+		setVisible(true);
+		setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
+
+		// set background image by using JLabel as contentpane
+		// Set layout to null because we'll move the label manually
+		setContentPane(contentpane = new JLabel());
+		MyImageIcon background = new MyImageIcon("char_selected_wall.png");
+		contentpane.setIcon( background.resize(contentpane.getWidth(),
+			                                   contentpane.getHeight()) );
+                
+       JRadioButton [] ra = new JRadioButton[8];
+        ra[0] = new JRadioButton ("Cheshire");
+        ra[1] = new JRadioButton( "Jasmine");
+        ra[2] = new JRadioButton( "Ariel");
+        ra[3] = new JRadioButton( "Donald Duck");
+        ra[4] = new JRadioButton( "Chip Dale");
+        ra[5] = new JRadioButton( "Pinocchio");
+        ra[6] = new JRadioButton( "Judy Hops");
+        ra[7] = new JRadioButton( "Tazans");
        
-       ra0.setBounds(-600,-250,frameWidth,frameHeight);
-       ra1.setBounds(-90,-250,frameWidth,frameHeight);
-       ra2.setBounds(300,-200,frameWidth,frameHeight);
-       ra3.setBounds(600,-200,frameWidth,frameHeight);
-       ra4.setBounds(-600,150,frameWidth,frameHeight);
-       ra5.setBounds(-90,150,frameWidth,frameHeight);
-       ra6.setBounds(300,150,frameWidth,frameHeight);
-       ra7.setBounds(600,150,frameWidth,frameHeight);
+       ra[0].setBounds(-600,-250,frameWidth,frameHeight);
+       ra[1].setBounds(-90,-250,frameWidth,frameHeight);
+       ra[2].setBounds(300,-200,frameWidth,frameHeight);
+       ra[3].setBounds(600,-200,frameWidth,frameHeight);
+       ra[4].setBounds(-600,150,frameWidth,frameHeight);
+       ra[5].setBounds(-90,150,frameWidth,frameHeight);
+       ra[6].setBounds(300,150,frameWidth,frameHeight);
+       ra[7].setBounds(600,150,frameWidth,frameHeight);
        
        
         JLabel [] open_file = new JLabel[8];
@@ -73,30 +86,18 @@ public class character extends JFrame {
        
                 for(int i=0; i<8;i++)
                 {
-                    add(open_file[i]);
+                    contentpane.add(open_file[i]);
+                    //getContentPane().add(ra[i]);
                 }
-		setTitle("Chose player's character");
-		setBounds(50, 50, frameWidth, frameHeight);
-		setVisible(true);
-		setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
-
-		// set background image by using JLabel as contentpane
-		// Set layout to null because we'll move the label manually
-		setContentPane(contentpane = new JLabel());
-		MyImageIcon background = new MyImageIcon("char_selected_wall.png");
-		contentpane.setIcon( background.resize(contentpane.getWidth(),
-			                                   contentpane.getHeight()) );
-
-                    getContentPane().add(ra0);
-                    getContentPane().add(ra1);
-                    getContentPane().add(ra2);
-                    getContentPane().add(ra3);
-                    getContentPane().add(ra4);
-                    getContentPane().add(ra5);
-                    getContentPane().add(ra6);
-                    getContentPane().add(ra7);
-            
-		repaint(); //validate
+               /* ButtonGroup group = new ButtonGroup();
+                for(int j=0;j<8;j++)
+                {
+                    group.add(ra[j]);
+                    contentpane.add(ra[j]);
+                }*/
+               
+                
+               repaint();
 	}
 	public static void main(String[] args) 
 	{
