@@ -1,3 +1,4 @@
+package proparaproj3;
 
 public class trophy extends javax.swing.JFrame {
 

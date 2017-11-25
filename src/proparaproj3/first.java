@@ -1,3 +1,4 @@
+package proparaproj3;
 
 import java.awt.Cursor;
 import javax.swing.WindowConstants;
@@ -15,7 +16,7 @@ public class first extends javax.swing.JFrame {
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        themeSound = new MySoundEffect("C:\\Users\\My Documents\\Desktop\\project\\project_sound\\toystory.wav");
+        themeSound = new MySoundEffect("sound/toystory.wav");
         themeSound.playLoop();
         initComponents();
 
@@ -94,14 +95,14 @@ public class first extends javax.swing.JFrame {
 
     private void playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playMouseClicked
         if(evt.getClickCount()==1){
-           play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/play_but2.png")));
+           play.setIcon(new javax.swing.ImageIcon(getClass().getResource("picture/button/play_but2.png")));
            
         }
     }//GEN-LAST:event_playMouseClicked
 
     private void howtoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_howtoMouseClicked
         if(evt.getClickCount()==1){
-           howto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Question_mark_but2.png")));
+           howto.setIcon(new javax.swing.ImageIcon(getClass().getResource("picture/button/Question_mark_but2.png")));
            instr = new instruction();
            instr.setVisible(true);
         }
@@ -109,7 +110,7 @@ public class first extends javax.swing.JFrame {
 
     private void rankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rankMouseClicked
         if(evt.getClickCount()==1){
-           rank.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trophy_but2.png")));
+           rank.setIcon(new javax.swing.ImageIcon(getClass().getResource("picture/button/trophy_but2.png")));
            trp = new trophy();
            trp.setVisible(true);
         }
@@ -117,7 +118,7 @@ public class first extends javax.swing.JFrame {
 
     private void creditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_creditMouseClicked
         if(evt.getClickCount()==1){
-           credit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/credit_1.png")));
+           credit.setIcon(new javax.swing.ImageIcon(getClass().getResource("picture/button/credit_1.png")));
            crd = new creditpage();
            crd.setVisible(true);
         }
