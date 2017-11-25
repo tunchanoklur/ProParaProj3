@@ -101,9 +101,10 @@ public class character extends JFrame {
 	}
 	public static void main(String[] args) 
 	{
-		new character(); 
+		//new character(); 
              //new level();
             //new charac();
+            new NewJFrame();
 	}	
 }
 class Mycharacter extends JLabel implements KeyListener, MouseListener
