@@ -12,7 +12,7 @@ public class GamePlay extends JFrame {
     private JTextField scoreText,Time;
     private JLabel characterLabel, dropLabel[],specialLabel[];
     private MyImageIcon backgroundImg, characterImg, dropImg[],specialImg[];
-    private SoundEffect hitSound, themeSound;
+    private SoundEffect hitSound[] = new SoundEffect[3], themeSound;
     
     // working variables - adjust the values as you want
     private Random rand = new Random();
@@ -59,7 +59,6 @@ public class GamePlay extends JFrame {
         for(int i=0;i<3;i++){
             specialImg[i] = new MyImageIcon("picture/tsum/special"+i+".gif");
         }
-        
 
         //add backgound
         drawpane = new JLabel();
@@ -114,7 +113,9 @@ public class GamePlay extends JFrame {
         specialclass[0] = new SpecialItem(new_special);
         drawpane.add(specialLabel[0]);
         
-        hitSound = new SoundEffect("sound/wingwing.wav");
+        hitSound[0] = new SoundEffect("sound/wingwing.wav");
+        hitSound[1] = new SoundEffect("sound/laugh.wav");
+        hitSound[2] = new SoundEffect("sound/storm.wav");
         themeSound = new SoundEffect("sound/toystory.wav");
         themeSound.playLoop();
         
@@ -229,7 +230,7 @@ public class GamePlay extends JFrame {
             } // end run
         synchronized public void collision() {
             if (characterLabel.getBounds().intersects(dropLabel[id].getBounds())) {
-                if(playhitsound)hitSound.playOnce();
+                if(playhitsound)hitSound[0].playOnce();
                 dropCurY=frameHeight-dropHeight;
                 int new_tsum;
                 new_tsum = rand.nextInt(22) + 0;
@@ -274,20 +275,26 @@ public class GamePlay extends JFrame {
 
         synchronized public void collision() {
             if (characterLabel.getBounds().intersects(specialLabel[0].getBounds())) {
-                if (playhitsound) {
-                    hitSound.playOnce();
-                }
                 switch (this.id) {
                     case 0:
                         //bomb
+                        if (playhitsound) {
+                            hitSound[1].playOnce();
+                        }
                         score -= 10;
                         break;
                     case 1:
                         //hourglass
+                        if (playhitsound) {
+                            hitSound[0].playOnce();
+                        }
                         time+=10;
                         break;
                     default:
                         //lightning
+                        if (playhitsound) {
+                            hitSound[2].playOnce();
+                        }
                         if(characterspeed>100)characterspeed-=30;
                         break;
                 }
