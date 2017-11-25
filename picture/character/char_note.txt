@@ -1,0 +1,6 @@
+arial = weight 200 x height 300 
+chip dale = w300 x h200
+cheshire = w 340 x h 190
+jasmine = w200 x h300
+pinoc = w200x 300
+donald = w220 x h300
