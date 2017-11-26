@@ -57,19 +57,7 @@ public class character extends JFrame {
        ra[6].setBounds(300,150,frameWidth,frameHeight);
        ra[7].setBounds(600,150,frameWidth,frameHeight);
        */
-       String [] items = new String[10];
-		for (int i=0; i < 10; i++) items[i] = " --- item " + i + " ---";
-       tb      = new JToggleButton[3];
-      JPanel bpanel = new JPanel();
-      bgroup  = new ButtonGroup(); 
-		for (int i=0; i < 3; i++) 
-		{ 
-			tb[i] = new JRadioButton( items[i] );
-			bgroup.add( tb[i] );
-			bpanel.add( tb[i] );
-		}
-
-		contentpane.add(bpanel);
+       
        
         JLabel [] open_file = new JLabel[8];
 		open_file[0]   = new JLabel(new MyImageIcon("char_cheshire.png"));

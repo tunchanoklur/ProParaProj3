@@ -13,7 +13,7 @@ public class level extends JFrame{
     private JLabel          contentpane;
 	//private Mycharacter     show_char;
 	private int frameWidth = 2000, frameHeight = 1000;
-
+////
 	public level()
 	{
 		setTitle("Chose level");
