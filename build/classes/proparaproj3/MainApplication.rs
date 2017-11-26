@@ -1,3 +1,0 @@
-proparaproj3.SoundEffect
-proparaproj3.MyImageIcon
-proparaproj3.MainApplication
