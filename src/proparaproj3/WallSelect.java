@@ -13,7 +13,7 @@ import javax.swing.event.ListSelectionListener;
 
 public class WallSelect extends JFrame{
 
-    Level               levelPage;
+    Tier               tierPage;
 
     private JPanel      contentpane;
     private JLabel      drawpane;
@@ -66,14 +66,14 @@ public class WallSelect extends JFrame{
             public void mouseEntered(MouseEvent e) {}
             public void mouseExited(MouseEvent e) {}
             public void mouseClicked(MouseEvent e) {
-                if(levelPage==null){
+                if(tierPage==null){
                     try {
-                        levelPage = new Level();
+                        tierPage = new Tier();
                     }
                     catch (Exception ex) {
                         Logger.getLogger(MainApplication.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }else levelPage.setVisible(true);
+                }else tierPage.setVisible(true);
                 setVisible(false);
             }
    

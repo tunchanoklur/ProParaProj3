@@ -3,7 +3,7 @@ package proparaproj3;
 import java.awt.*;
 import javax.swing.*;
 
-public class Character extends JFrame {
+public class SelectCharacter extends JFrame {
     private JPanel contentpane;
     private JLabel drawpane;
     private JLabel[] character = new JLabel[8];
@@ -16,7 +16,7 @@ public class Character extends JFrame {
         new Character();
     }
 
-    public Character() {
+    public SelectCharacter() {
         // super("Show char");
         setTitle("Choose player's character");
         setBounds(0, 0, frameWidth, frameHeight);

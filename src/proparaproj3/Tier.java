@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-public class Level extends JFrame {
+public class Tier extends JFrame {
     GamePlay    gameplay;
 
     private JPanel contentpane;
@@ -22,7 +22,7 @@ public class Level extends JFrame {
         new Level();
     }
     
-    public Level() {
+    public Tier() {
         setTitle("Choose level");
         setBounds(0,0, frameWidth, frameHeight);
         setResizable(false);

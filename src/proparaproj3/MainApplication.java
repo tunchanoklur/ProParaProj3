@@ -8,13 +8,10 @@ import java.util.logging.Logger;
 
 public class MainApplication extends JFrame{
     //pages
-    //GamePlay    gameplay;
     Character   charPage;
-    //Level       levelPage;
-    //WallSelect  wallPage;
     Instruction instructionPage;
     Credit      creditPage;
-    //trophy          highscorePage;*/
+    //trophy          highscorePage;
     //components
     private JPanel contentpane;
     private JLabel drawpane;
@@ -75,14 +72,13 @@ public class MainApplication extends JFrame{
                 if(charPage==null){
                     try {
                         charPage = new Character();
-                        //gameplay = new GamePlay();
                     }
                     catch (Exception ex) {
                         Logger.getLogger(MainApplication.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                else charPage.setVisible(true);//gameplay.setVisible(true);
-                setVisible(false);//change visible of main to false
+                else charPage.setVisible(true);
+                setVisible(false);
             }
             public void mousePressed(MouseEvent e) {}
             public void mouseReleased(MouseEvent e) {}
