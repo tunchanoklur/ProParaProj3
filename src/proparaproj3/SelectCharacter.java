@@ -13,7 +13,7 @@ public class SelectCharacter extends JFrame {
     private ButtonGroup bgroup;
 
      public static void main(String[] args) {
-        new Character();
+        new SelectCharacter();
     }
 
     public SelectCharacter() {

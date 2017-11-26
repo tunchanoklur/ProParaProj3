@@ -19,7 +19,7 @@ public class Tier extends JFrame {
     private int frameWidth = 2000, frameHeight = 1000;
     
     public static void main(String[] args) {
-        new Level();
+        new Tier();
     }
     
     public Tier() {
