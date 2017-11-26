@@ -62,7 +62,7 @@ public class WallSelect extends JFrame{
         });
         
         combo.setBounds(800,500,400,200);
-        drawpane.add(combo);
+        //drawpane.add(combo);
         contentpane.add(combo);
         contentpane.add(drawpane);
         validate();
