@@ -8,10 +8,12 @@ import java.util.logging.Logger;
 
 public class MainApplication extends JFrame{
     //pages
-    
-    GamePlay gameplay;
+    //GamePlay    gameplay;
+    Character   charPage;
+    //Level       levelPage;
+    //WallSelect  wallPage;
     Instruction instructionPage;
-    Credit  creditPage;
+    Credit      creditPage;
     //trophy          highscorePage;*/
     //components
     private JPanel contentpane;
@@ -70,15 +72,16 @@ public class MainApplication extends JFrame{
                 playButton.setIcon(playImg[0]);
             }
             public void mouseClicked(MouseEvent e) {
-                if(gameplay==null){
+                if(charPage==null){
                     try {
-                        gameplay = new GamePlay();
+                        charPage = new Character();
+                        //gameplay = new GamePlay();
                     }
-                    catch (InterruptedException ex) {
+                    catch (Exception ex) {
                         Logger.getLogger(MainApplication.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                else gameplay.setVisible(true);
+                else charPage.setVisible(true);//gameplay.setVisible(true);
                 setVisible(false);//change visible of main to false
             }
             public void mousePressed(MouseEvent e) {}

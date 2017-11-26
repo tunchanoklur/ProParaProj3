@@ -10,13 +10,18 @@ import java.util.logging.Logger;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+
 public class WallSelect extends JFrame{
+
+    Level               levelPage;
 
     private JPanel      contentpane;
     private JLabel      drawpane;
+    private JLabel      next;
     private JComboBox   combo;
     private JList       musicList;
-    private MyImageIcon aladdin, mulan, mermiad, tangled, toys, BG;
+    private MyImageIcon aladdin, mulan, mermiad, tangled, toys;
+    private MyImageIcon BG, nextPage;
     private SoundEffect   alaSong, muSong, merSong, tangSong, toySong,cur_song;
     private String [] name = {"Aladdin", "Mulan", "Mermaid", "Tangled", "Toy Story"};
     private int frameWidth = 2000, frameHeight = 1000;
@@ -40,6 +45,7 @@ public class WallSelect extends JFrame{
     
     public void AddComponents(){
         BG = new MyImageIcon("picture/wallpaper/selectWall.png").resize(frameWidth,frameHeight);
+        nextPage = new MyImageIcon("picture/button/forward.png").resize(200,200);
         aladdin = new MyImageIcon("picture/wallpaper/aladin_wall.png").resize(frameWidth,frameHeight);
         mulan = new MyImageIcon("picture/wallpaper/mulan_wall.png").resize(frameWidth,frameHeight);
         mermiad = new MyImageIcon("picture/wallpaper/arial_wall.png").resize(frameWidth,frameHeight);
@@ -52,6 +58,25 @@ public class WallSelect extends JFrame{
         tangSong = new SoundEffect("sound/tangled.wav");
         toySong = new SoundEffect("sound/toystory.wav");
 
+        next = new JLabel(nextPage);
+        next.addMouseListener(new MouseListener(){
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {}
+            public void mouseClicked(MouseEvent e) {
+                if(levelPage==null){
+                    try {
+                        levelPage = new Level();
+                    }
+                    catch (Exception ex) {
+                        Logger.getLogger(MainApplication.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else levelPage.setVisible(true);
+                setVisible(false);
+            }
+   
+        });
         drawpane = new JLabel();
         drawpane.setIcon(BG);
         drawpane.setLayout(null);
@@ -105,6 +130,8 @@ public class WallSelect extends JFrame{
             }
         });
 
+        next.setBounds(800,500,400,200);
+        contentpane.add(next);
         musicList.setBounds(0, 0, 200, 210);
         musicList.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setFont(new Font("Courier", Font.BOLD, 30));

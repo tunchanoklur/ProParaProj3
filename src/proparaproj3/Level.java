@@ -3,13 +3,18 @@ package proparaproj3;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Level extends JFrame {
 
+    GamePlay    gameplay;
     private JPanel contentpane;
     private JLabel drawpane;
-    private MyImageIcon backgroundImg,goImg;
+    private JLabel      next;
+    private MyImageIcon backgroundImg,goImg,nextImg;
     private JButton button[] = new JButton[3];
     private int frameWidth = 2000, frameHeight = 1000;
     
@@ -26,6 +31,7 @@ public class Level extends JFrame {
         contentpane = (JPanel)getContentPane();
         contentpane.setLayout(new BorderLayout());
         backgroundImg = new MyImageIcon("picture/wallpaper/level_wall.png").resize(frameWidth,frameHeight);
+        nextImg = new MyImageIcon("picture/button/forward.png").resize(200,200);
 
         drawpane = new JLabel();
         drawpane.setIcon(backgroundImg);
@@ -61,6 +67,28 @@ public class Level extends JFrame {
                 button.setEnabled(false);
             }
         });
+        next = new JLabel(nextImg);
+        next.addMouseListener(new MouseListener(){
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {}
+            public void mouseClicked(MouseEvent e) {
+                if(gameplay==null){
+                    try {
+                        gameplay = new GamePlay();
+                    }
+                    catch (Exception ex) {
+                        Logger.getLogger(MainApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+                }else gameplay.setVisible(true);
+                setVisible(false);
+            }
+   
+        });
+
+        next.setBounds(800,500,400,200);
+        contentpane.add(next);
         button[0].setBounds(225,800,200,100);
         contentpane.add(button[0]);
         button[1].setBounds(925,800,200,100);
