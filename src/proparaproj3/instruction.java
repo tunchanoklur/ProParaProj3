@@ -3,25 +3,21 @@ package proparaproj3;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Instruction extends JDialog{
     //components
-    private JPanel contentpane;
+    final private JPanel contentpane;
     private JLabel drawpane;
     private JLabel LRbutton,Bomb,Time,Shock,Rabbit;
     private JButton backButton;
     private MyImageIcon instruction_bg,gameplayImg[] = new MyImageIcon[5];
     private MyImageIcon backImg;
-    private int frameWidth = 1000, frameHeight = 500;
+    final private int frameWidth = 1000, frameHeight = 500;
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new Instruction();
-    }
+    }*/
     public Instruction(){
-        //super(owner,"Catch Me : How To Play?",false);
+        //super(owner,"Catch Me : How To Play?",true);
         setTitle("Catch Me : How To Play?");
         setBounds(50, 50, frameWidth, frameHeight);
         setResizable(false);
