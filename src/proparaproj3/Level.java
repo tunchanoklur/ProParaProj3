@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Level extends JFrame {
-
     private JPanel contentpane;
     private JLabel drawpane;
     private MyImageIcon backgroundImg,goImg;
