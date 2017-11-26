@@ -49,14 +49,13 @@ public class WallSelect extends JFrame{
         combo.addItemListener( new ItemListener() {
             public void itemStateChanged( ItemEvent e )
             {
-		int index = combo.getSelectedIndex();
-                if(index==0){
+                if(combo.getSelectedIndex()==0){
                     drawpane.setIcon(aladdin);
-                }else if(index==1){
+                }else if(combo.getSelectedIndex()==1){
                     drawpane.setIcon(mulan);
-                }else if(index==2){
+                }else if(combo.getSelectedIndex()==2){
                     drawpane.setIcon(mermiad);
-                }else if(index==3){
+                }else if(combo.getSelectedIndex()==3){
                     drawpane.setIcon(tangled);
                 }
             }
