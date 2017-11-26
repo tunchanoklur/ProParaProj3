@@ -112,8 +112,8 @@ public class character extends JFrame {
 	}
 	public static void main(String[] args) 
 	{
-		new character(); 
-             //new level();
+		//new character(); 
+             new level();
             //new charac();
             //new NewJFrame();
 	}	

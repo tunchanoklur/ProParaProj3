@@ -32,10 +32,10 @@ public class level extends JFrame{
        GridLayout layout = new GridLayout();
        getContentPane().setLayout(layout);
        // 3x2
-       layout.setColumns(3);
-       layout.setRows(1);
-       layout.setHgap(50);
-       layout.setVgap(0);
+       layout.setColumns(7);
+       layout.setRows(6);
+       layout.setHgap(100);
+       layout.setVgap(70);
        /////////////////////////////
        JButton button1 = new JButton(new MyImageIcon("easy_but.png"));
        JButton button2 = new JButton( new MyImageIcon("med_but.png"));
@@ -77,9 +77,57 @@ public class level extends JFrame{
                    }
                }
        );
+            
+           
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            
+             getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            
+             getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            
+             getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            getContentPane().add(new JLabel());
+            
+            
+            getContentPane().add(new JLabel());
             getContentPane().add(button1);
+            getContentPane().add(new JLabel());
             getContentPane().add(button2);
+            getContentPane().add(new JLabel());
             getContentPane().add(button3);
+            getContentPane().add(new JLabel());
+             
             pack();
                 setLayout(null);
                 setSize(2000,1000);
