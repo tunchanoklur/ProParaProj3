@@ -25,7 +25,7 @@ public class Instruction extends JDialog{
         setVisible(true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         
-     //   contentpane = (JPanel)getContentPane();
+        contentpane = (JPanel)getContentPane();
         contentpane.setLayout(new BorderLayout());
         
         AddComponents();
