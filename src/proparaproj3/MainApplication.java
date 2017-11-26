@@ -71,6 +71,7 @@ public class MainApplication extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 if(charPage==null){
                     try {
+                        main_sound.stop();
                         charPage = new SelectCharacter();
                     }
                     catch (Exception ex) {
