@@ -68,6 +68,7 @@ public class WallSelect extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 if(tierPage==null){
                     try {
+                        cur_song.stop();
                         tierPage = new Tier();
                     }
                     catch (Exception ex) {

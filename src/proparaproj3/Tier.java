@@ -15,6 +15,7 @@ public class Tier extends JFrame {
     private JLabel drawpane;
     private JLabel      next;
     private MyImageIcon backgroundImg,goImg,nextImg;
+    private MySoundEffect   readyGo;
     private JButton button[] = new JButton[3];
     private int frameWidth = 2000, frameHeight = 1000;
     
@@ -32,7 +33,8 @@ public class Tier extends JFrame {
         contentpane.setLayout(new BorderLayout());
         backgroundImg = new MyImageIcon("picture/wallpaper/level_wall.png").resize(frameWidth,frameHeight);
         nextImg = new MyImageIcon("picture/button/forward.png").resize(200,200);
-
+        readyGo = new MySoundEffect("sound/readyyy.wav");
+        
         drawpane = new JLabel();
         drawpane.setIcon(backgroundImg);
         drawpane.setLayout(null);
@@ -76,6 +78,7 @@ public class Tier extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if(gameplay==null){
                     try {
+                        readyGo.playOnce();
                         gameplay = new GamePlay();
                     }
                     catch (Exception ex) {
@@ -100,3 +103,29 @@ public class Tier extends JFrame {
     }
 
 }
+class MySoundEffect {
+
+    private java.applet.AudioClip audio;
+
+    public MySoundEffect(String filename) {
+        try {
+            java.io.File file = new java.io.File(filename);
+            audio = java.applet.Applet.newAudioClip(file.toURL());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void playOnce() {
+        audio.play();
+    }
+
+    public void playLoop() {
+        audio.loop();
+    }
+
+    public void stop() {
+        audio.stop();
+    }
+};
