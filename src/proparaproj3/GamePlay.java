@@ -34,7 +34,7 @@ public class GamePlay extends JFrame {
     //////////////////////////////////////////////////////////////////////////
     public GamePlay() throws InterruptedException{
         setTitle("Catch Me : Disney");
-        setBounds(50, 50, frameWidth, frameHeight);
+        setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -55,8 +55,8 @@ public class GamePlay extends JFrame {
         for(int i=0;i<22;i++){
             dropImg[i] = new MyImageIcon("picture/tsum/tsum"+i+".png").resize(dropWidth,dropHeight);
         }
-        specialImg = new MyImageIcon[3];
-        for(int i=0;i<3;i++){
+        specialImg = new MyImageIcon[4];
+        for(int i=0;i<4;i++){
             specialImg[i] = new MyImageIcon("picture/tsum/special"+i+".gif");
         }
 
@@ -255,7 +255,7 @@ public class GamePlay extends JFrame {
                 if(specialCurY+150>=frameHeight){//unable to catch the tsum tsum
                             specialCurX = rand.nextInt(frameWidth-150) + 0;
                             specialCurY=-150;
-                            id = rand.nextInt(3) + 0;
+                            id = rand.nextInt(4) + 0;//make the flash less likely drop
                             specialLabel[0].setIcon(specialImg[id]);
                         try {
                             Thread.sleep(25);
@@ -290,13 +290,20 @@ public class GamePlay extends JFrame {
                         }
                         time+=10;
                         break;
-                    default:
+                    case 2:
                         //lightning
                         if (playhitsound) {
                             hitSound[2].playOnce();
                         }
                         if(characterspeed>100)characterspeed-=30;
                         break;
+                    default:
+                        if (playhitsound) {
+                            hitSound[1].playOnce();
+                        }
+                        if(characterspeed<350)characterspeed+=40;
+                        break;
+                        
                 }
                 validate();
                 specialCurX = rand.nextInt(frameWidth-150) + 0;

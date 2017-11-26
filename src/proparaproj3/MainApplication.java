@@ -3,16 +3,15 @@ package proparaproj3;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MainApplication extends JFrame{
     //pages
     GamePlay gameplay;
-    Instruction     instructionPage;
-    /*creditpage      creditPage;
-    trophy          highscorePage;*/
+    Instruction instructionPage;
+    Credit  creditPage;
+    //trophy          highscorePage;*/
     //components
     private JPanel contentpane;
     private JLabel drawpane;
@@ -30,7 +29,7 @@ public class MainApplication extends JFrame{
     }
     public MainApplication(){
         setTitle("Catch Me : Disney");
-        setBounds(50, 50, frameWidth, frameHeight);
+        setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -93,8 +92,11 @@ public class MainApplication extends JFrame{
                 howtoButton.setIcon(howtoImg[0]);
             }
             public void mouseClicked(MouseEvent e) {
-                instructionPage = new Instruction();
-                //
+                //in case we repress the button while opening it
+                //instead of getting new dialog, it pop the old one up
+                if(instructionPage==null)instructionPage = new Instruction();
+                else instructionPage.setVisible(true);
+                
             }
             public void mousePressed(MouseEvent e) {}
             public void mouseReleased(MouseEvent e) {}
@@ -122,16 +124,9 @@ public class MainApplication extends JFrame{
                 creditButton.setIcon(creditImg[0]);
             }
             public void mouseClicked(MouseEvent e) {
-                /*if(instructionPage==null){
-                    try {
-                        instructionPage = new instruction();
-                    }
-                    catch (InterruptedException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                else instructionPage.setVisible(true);
-                setVisible(false);//change visible of main to false*/
+                if(creditPage==null)creditPage=new Credit();
+                else creditPage.setVisible(true);
+                
             }
             public void mousePressed(MouseEvent e) {}
             public void mouseReleased(MouseEvent e) {}
@@ -151,7 +146,7 @@ public class MainApplication extends JFrame{
 }
 
 // Auxiliary class to resize image
-/*class MyImageIcon extends ImageIcon {
+class MyImageIcon extends ImageIcon {
 
     public MyImageIcon(String fname) {
         super(fname);
@@ -165,7 +160,7 @@ public class MainApplication extends JFrame{
         Image newimg = oldimg.getScaledInstance(width, height,java.awt.Image.SCALE_SMOOTH);
         return new MyImageIcon(newimg);
     }
-};*/
+};
 
 // Auxiliary class to play sound effect (support .wav or .mid file)
 class SoundEffect {
