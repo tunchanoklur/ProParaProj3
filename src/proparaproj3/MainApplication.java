@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class MainApplication extends JFrame{
     //pages
-    Character   charPage;
+    SelectCharacter   charPage;
     Instruction instructionPage;
     Credit      creditPage;
     //trophy          highscorePage;
@@ -71,7 +71,7 @@ public class MainApplication extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 if(charPage==null){
                     try {
-                        charPage = new Character();
+                        charPage = new SelectCharacter();
                     }
                     catch (Exception ex) {
                         Logger.getLogger(MainApplication.class.getName()).log(Level.SEVERE, null, ex);

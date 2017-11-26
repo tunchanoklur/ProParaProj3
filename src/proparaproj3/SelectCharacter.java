@@ -1,19 +1,24 @@
 package proparaproj3;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class SelectCharacter extends JFrame {
+    WallSelect     wall;
     private JPanel contentpane;
     private JLabel drawpane;
+    private JLabel next;
     private JLabel[] character = new JLabel[8];
-    private MyImageIcon backgroundImg;
+    private MyImageIcon backgroundImg, nextImg;
     private int frameWidth = 2000, frameHeight = 1000;
     private JRadioButton[] radio_but;
     private ButtonGroup bgroup;
 
      public static void main(String[] args) {
-        new Character();
+        new SelectCharacter();
     }
 
     public SelectCharacter() {
@@ -29,6 +34,7 @@ public class SelectCharacter extends JFrame {
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
         backgroundImg = new MyImageIcon("picture/wallpaper/select_char.png").resize(frameWidth,frameHeight);
+        nextImg = new MyImageIcon("picture/button/forward.png").resize(200,200);
 
         drawpane = new JLabel();
         drawpane.setIcon(backgroundImg);
@@ -92,7 +98,28 @@ public class SelectCharacter extends JFrame {
             contentpane.add(character[i]);
             contentpane.add(radio_but[i]);
         }
-        
+        next = new JLabel(nextImg);
+        next.addMouseListener(new MouseListener(){
+            public void mousePressed(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {}
+            public void mouseClicked(MouseEvent e) {
+                if(wall==null){
+                    try {
+                        wall = new WallSelect();
+                    }
+                    catch (Exception ex) {
+                        Logger.getLogger(MainApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+                }else wall.setVisible(true);
+                setVisible(false);
+            }
+   
+        });
+
+        next.setBounds(0, 0,200 , 200);
+        contentpane.add(next);
         contentpane.add(drawpane, BorderLayout.CENTER);
         repaint();
         validate();
