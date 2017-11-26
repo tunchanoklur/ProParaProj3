@@ -17,7 +17,7 @@ public class WallSelect extends JFrame{
     private JComboBox   combo;
     private JList       musicList;
     private MyImageIcon aladdin, mulan, mermiad, tangled, toys, BG;
-    private MySoundEffect   alaSong, muSong, merSong, tangSong, toySong;
+    private SoundEffect   alaSong, muSong, merSong, tangSong, toySong,cur_song;
     private String [] name = {"Aladdin", "Mulan", "Mermaid", "Tangled", "Toy Story"};
     private int frameWidth = 2000, frameHeight = 1000;
     
@@ -27,7 +27,7 @@ public class WallSelect extends JFrame{
     
     public WallSelect(){
         setTitle("Select Wallpaper");
-        setBounds(50, 50, frameWidth, frameHeight);
+        setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -46,11 +46,11 @@ public class WallSelect extends JFrame{
         tangled = new MyImageIcon("picture/wallpaper/tangled_wall.png").resize(frameWidth,frameHeight);
         toys = new MyImageIcon("picture/wallpaper/option_wall.png").resize(frameWidth,frameHeight);
         
-        alaSong = new MySoundEffect("sound/aladin.wav");
-        muSong = new MySoundEffect("sound/mulan.wav");
-        merSong = new MySoundEffect("sound/mermaid.wav");
-        tangSong = new MySoundEffect("sound/tangled.wav");
-        toySong = new MySoundEffect("sound/toystory.wav");
+        alaSong = new SoundEffect("sound/aladin.wav");
+        muSong = new SoundEffect("sound/mulan.wav");
+        merSong = new SoundEffect("sound/mermaid.wav");
+        tangSong = new SoundEffect("sound/tangled.wav");
+        toySong = new SoundEffect("sound/toystory.wav");
 
         drawpane = new JLabel();
         drawpane.setIcon(BG);
@@ -61,18 +61,28 @@ public class WallSelect extends JFrame{
         musicList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         musicList.addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent e) {
-              if( !e.getValueIsAdjusting()){  
-                if(musicList.getSelectedIndex()==0){
-                    alaSong.playOnce();
-                }else if(musicList.getSelectedIndex()==1){
-                    muSong.playOnce();
-                }else if(musicList.getSelectedIndex()==2){
-                    merSong.playOnce();
-                }else if(musicList.getSelectedIndex()==3){
-                    tangSong.playOnce();
-                }else if(musicList.getSelectedIndex()==4){
-                    toySong.playOnce();
-                }
+              if( !e.getValueIsAdjusting()){
+                  if(cur_song!=null)cur_song.stop();
+                  switch (musicList.getSelectedIndex()) {
+                      case 0:
+                          cur_song=alaSong;
+                          break;
+                      case 1:
+                          cur_song=muSong;
+                          break;
+                      case 2:
+                          cur_song=merSong;
+                          break;
+                      case 3:
+                          cur_song=tangSong;
+                          break;
+                      case 4:
+                          cur_song=toySong;
+                          break;
+                      default:
+                          break;
+                  }
+                cur_song.playOnce();
             }
             }
         });
@@ -95,36 +105,17 @@ public class WallSelect extends JFrame{
             }
         });
 
-        musicList.setSize(musicList.getWidth(),musicList.getHeight());
-        musicList.setBounds(0, 0, 400, 600);
+        musicList.setBounds(0, 0, 200, 210);
+        musicList.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setSize(combo.getWidth(),combo.getHeight());
-        combo.setBounds(1500,0,400,600);
-        contentpane.add(new JScrollPane(musicList));
+        combo.setBounds(1730,0,200,100);
+        contentpane.add(musicList);
         contentpane.add(combo);
         contentpane.add(drawpane);
         validate();
         repaint();  
         
     }
-    
-    
-}
-class MySoundEffect
-{
-	private java.applet.AudioClip audio;
-
-	public MySoundEffect(String filename)
-	{
-		try
-		{
-			java.io.File file = new java.io.File(filename);
-			audio = java.applet.Applet.newAudioClip(file.toURL());
-
-		}
-		catch (Exception e) { e.printStackTrace(); }
-	}
-	public void playOnce()   { audio.play(); }
-	public void playLoop()   { audio.loop(); }//play in loop
-	public void stop()       { audio.stop(); }
+  
 }
