@@ -7,7 +7,7 @@ public class Instruction extends JDialog{
     //components
     final private JPanel contentpane;
     private JLabel drawpane;
-    private JLabel LRbutton,Bomb,Time,Shock,Rabbit;
+    private JLabel LRbutton,Bomb,Time,Shock,Slot;
     private JButton backButton;
     private MyImageIcon instruction_bg,gameplayImg[] = new MyImageIcon[5];
     private MyImageIcon backImg;
@@ -31,20 +31,27 @@ public class Instruction extends JDialog{
         AddComponents();
     }
     public void AddComponents() {
-        instruction_bg = new MyImageIcon("picture/wallpaper/emp_instruction.png").resize(frameWidth,frameHeight);
+        instruction_bg = new MyImageIcon("picture/wallpaper/ins_1.png").resize(frameWidth,frameHeight);
         backImg = new MyImageIcon("picture/button/backward.png").resize(60,60);
         gameplayImg[0] = new MyImageIcon("picture/button/LRbutton.gif");
+       /* for(int i=1;i<4;i++)
+        {
+            gameplayImg[i] = new MyImageIcon("picture/tsum/special"+i+".gif");
+        }
+        /*gameplayImg[0] = new MyImageIcon("picture/button/LRbutton.gif");*/
+       
         gameplayImg[1] = new MyImageIcon("picture/tsum/special0.gif");
-        gameplayImg[2] = new MyImageIcon("picture/tsum/special1.gif");
+        gameplayImg[2] = new MyImageIcon("picture/tsum/hourg_1.gif");
         gameplayImg[3] = new MyImageIcon("picture/tsum/special2.gif");
-        gameplayImg[4] = new MyImageIcon("picture/tsum/tsum_time.png").resize(75,91);
+        gameplayImg[4] = new MyImageIcon("picture/tsum/slot_3.gif");
+        //gameplayImg[4] = new MyImageIcon("picture/tsum/tsum_time.png").resize(75,91);
         
         
         LRbutton = new JLabel(gameplayImg[0]);
         Bomb = new JLabel(gameplayImg[1]);
         Time = new JLabel(gameplayImg[2]);
         Shock = new JLabel(gameplayImg[3]);
-        Rabbit = new JLabel(gameplayImg[4]);
+        Slot = new JLabel(gameplayImg[4]);
         
         drawpane = new JLabel();
         drawpane.setIcon(instruction_bg);
@@ -63,15 +70,15 @@ public class Instruction extends JDialog{
 
         backButton.setBounds(0,0,60,60);
         contentpane.add(backButton);
-        LRbutton.setBounds(395,125,200,92);
+        LRbutton.setBounds(395,100,200,92);
         contentpane.add(LRbutton);
         Bomb.setBounds(535,345,106,122);
         contentpane.add(Bomb);
-        Rabbit.setBounds(395,238,75,91);
-        contentpane.add(Rabbit);
-        Time.setBounds(420,238,200,92);
+        Slot.setBounds(200,238,100,100);
+        contentpane.add(Slot);
+        Time.setBounds(470,238,200,92);
         contentpane.add(Time);
-        Shock.setBounds(865,150,150,126);
+        Shock.setBounds(865,130,150,126);
         contentpane.add(Shock);
         contentpane.add(drawpane,BorderLayout.CENTER);
         validate();
