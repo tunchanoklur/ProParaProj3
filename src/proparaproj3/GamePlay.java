@@ -123,7 +123,7 @@ public class GamePlay extends JFrame {
         hitSound[0] = new SoundEffect("sound/wingwing.wav");
         hitSound[1] = new SoundEffect("sound/laugh.wav");
         hitSound[2] = new SoundEffect("sound/storm.wav");
-        hitSound[3]=new SoundEffect("sound/flasd_edit.wav");
+        hitSound[3]=new SoundEffect("sound/flash_2.wav");
         themeSound = new SoundEffect("sound/toystory.wav");
         themeSound.playLoop();
         
