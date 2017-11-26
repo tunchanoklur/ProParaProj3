@@ -20,6 +20,8 @@ public class character extends JFrame {
 	private JLabel          contentpane;
 	private Mycharacter     show_char;
 	private int frameWidth = 2000, frameHeight = 1000;
+        private JToggleButton [] tb;
+        private ButtonGroup		 bgroup;
 
 	public character()
 	{
@@ -36,7 +38,7 @@ public class character extends JFrame {
 		contentpane.setIcon( background.resize(contentpane.getWidth(),
 			                                   contentpane.getHeight()) );
                 
-       JRadioButton [] ra = new JRadioButton[8];
+       /*JRadioButton [] ra = new JRadioButton[8];
         ra[0] = new JRadioButton ("Cheshire");
         ra[1] = new JRadioButton( "Jasmine");
         ra[2] = new JRadioButton( "Ariel");
@@ -54,7 +56,20 @@ public class character extends JFrame {
        ra[5].setBounds(-90,150,frameWidth,frameHeight);
        ra[6].setBounds(300,150,frameWidth,frameHeight);
        ra[7].setBounds(600,150,frameWidth,frameHeight);
-       
+       */
+       String [] items = new String[10];
+		for (int i=0; i < 10; i++) items[i] = " --- item " + i + " ---";
+       tb      = new JToggleButton[3];
+      JPanel bpanel = new JPanel();
+      bgroup  = new ButtonGroup(); 
+		for (int i=0; i < 3; i++) 
+		{ 
+			tb[i] = new JRadioButton( items[i] );
+			bgroup.add( tb[i] );
+			bpanel.add( tb[i] );
+		}
+
+		contentpane.add(bpanel);
        
         JLabel [] open_file = new JLabel[8];
 		open_file[0]   = new JLabel(new MyImageIcon("char_cheshire.png"));
@@ -93,18 +108,26 @@ public class character extends JFrame {
                 for(int j=0;j<8;j++)
                 {
                     group.add(ra[j]);
-                    contentpane.add(ra[j]);
-                }*/
-               
-                
+                    
+                }
+               contentpane.add(ra[0]);
+            contentpane.add(ra[1]);
+            contentpane.add(ra[2]);
+            contentpane.add(ra[3]);
+            contentpane.add(ra[4]);
+            contentpane.add(ra[5]);
+            contentpane.add(ra[6]);
+            contentpane.add(ra[7]);
+                setLocation(null);*/
+                setVisible(true);
                repaint();
 	}
 	public static void main(String[] args) 
 	{
-		//new character(); 
+		new character(); 
              //new level();
             //new charac();
-            new NewJFrame();
+            //new NewJFrame();
 	}	
 }
 class Mycharacter extends JLabel implements KeyListener, MouseListener
