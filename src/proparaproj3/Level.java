@@ -9,8 +9,11 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Level extends JFrame {
+<<<<<<< HEAD
 
     GamePlay    gameplay;
+=======
+>>>>>>> 590c9eae1dde20ebd2c81c8d050cafb6b0b0a459
     private JPanel contentpane;
     private JLabel drawpane;
     private JLabel      next;

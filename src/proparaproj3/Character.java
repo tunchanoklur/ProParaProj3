@@ -4,7 +4,6 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Character extends JFrame {
-
     private JPanel contentpane;
     private JLabel drawpane;
     private JLabel[] character = new JLabel[8];
