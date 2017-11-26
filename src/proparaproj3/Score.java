@@ -37,7 +37,7 @@ public class Score extends JDialog {
         setTitle("Catch Me : Score");
         setBounds(50, 50, frameWidth, frameHeight);
         setResizable(false);
-        setModal(true);
+        //setModal(true);
         setVisible(true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         
