@@ -29,7 +29,7 @@ public class MainApplication extends JFrame{
     }
     public MainApplication(){
         setTitle("Catch Me : Disney");
-        setBounds(50, 50, frameWidth, frameHeight);
+        setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -146,7 +146,7 @@ public class MainApplication extends JFrame{
 }
 
 // Auxiliary class to resize image
-/*class MyImageIcon extends ImageIcon {
+class MyImageIcon extends ImageIcon {
 
     public MyImageIcon(String fname) {
         super(fname);
@@ -160,7 +160,7 @@ public class MainApplication extends JFrame{
         Image newimg = oldimg.getScaledInstance(width, height,java.awt.Image.SCALE_SMOOTH);
         return new MyImageIcon(newimg);
     }
-};*/
+};
 
 // Auxiliary class to play sound effect (support .wav or .mid file)
 class SoundEffect {

@@ -34,7 +34,7 @@ public class GamePlay extends JFrame {
     //////////////////////////////////////////////////////////////////////////
     public GamePlay() throws InterruptedException{
         setTitle("Catch Me : Disney");
-        setBounds(50, 50, frameWidth, frameHeight);
+        setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
