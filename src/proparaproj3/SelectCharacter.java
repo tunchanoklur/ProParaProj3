@@ -1,6 +1,8 @@
 package proparaproj3;
 
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.logging.Logger;
@@ -13,29 +15,32 @@ public class SelectCharacter extends JFrame {
     private JLabel next;
     private JLabel[] character = new JLabel[8];
     private MyImageIcon backgroundImg, nextImg;
+    private String character_dir[]=new String[8];
     private int frameWidth = 2000, frameHeight = 1000;
     private JRadioButton[] radio_but;
     private ButtonGroup bgroup;
+    private int selected=0;
 
-     public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new SelectCharacter();
-    }
+    }*/
 
-    public SelectCharacter() {
-        // super("Show char");
+    public SelectCharacter(PlayerInfo player) {
         setTitle("Choose player's character");
         setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        // set background image by using JLabel as contentpane
-        // Set layout to null because we'll move the label manually
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
         backgroundImg = new MyImageIcon("picture/wallpaper/select_char.png").resize(frameWidth,frameHeight);
         nextImg = new MyImageIcon("picture/button/forward.png").resize(200,200);
-
+        
+        for(int i=0;i<8;i++){
+            character_dir[i] = "picture/user_icon/user"+i+".png";
+        }
+        
         drawpane = new JLabel();
         drawpane.setIcon(backgroundImg);
         drawpane.setLayout(null);
@@ -98,6 +103,80 @@ public class SelectCharacter extends JFrame {
             contentpane.add(character[i]);
             contentpane.add(radio_but[i]);
         }
+        
+        radio_but[0].addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    JRadioButton temp = (JRadioButton) e.getItem();
+                    if (temp.isSelected()) {
+                        selected = 0;
+                    }
+                    validate();
+                }
+        });
+        radio_but[1].addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    JRadioButton temp = (JRadioButton) e.getItem();
+                    if (temp.isSelected()) {
+                        selected = 1;
+                    }
+                    validate();
+                }
+        });
+        radio_but[2].addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    JRadioButton temp = (JRadioButton) e.getItem();
+                    if (temp.isSelected()) {
+                        selected = 2;
+                    }
+                    validate();
+                }
+        });
+        radio_but[3].addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    JRadioButton temp = (JRadioButton) e.getItem();
+                    if (temp.isSelected()) {
+                        selected = 3;
+                    }
+                    validate();
+                }
+        });
+        radio_but[4].addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    JRadioButton temp = (JRadioButton) e.getItem();
+                    if (temp.isSelected()) {
+                        selected = 4;
+                    }
+                    validate();
+                }
+        });
+        radio_but[5].addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    JRadioButton temp = (JRadioButton) e.getItem();
+                    if (temp.isSelected()) {
+                        selected = 5;
+                    }
+                    validate();
+                }
+        });
+        radio_but[6].addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    JRadioButton temp = (JRadioButton) e.getItem();
+                    if (temp.isSelected()) {
+                        selected = 6;
+                    }
+                    validate();
+                }
+        });
+        radio_but[7].addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    JRadioButton temp = (JRadioButton) e.getItem();
+                    if (temp.isSelected()) {
+                        selected = 7;
+                    }
+                    validate();
+                }
+        });
+        
         next = new JLabel(nextImg);
         next.addMouseListener(new MouseListener(){
             public void mousePressed(MouseEvent e) {}
@@ -105,9 +184,11 @@ public class SelectCharacter extends JFrame {
             public void mouseEntered(MouseEvent e) {}
             public void mouseExited(MouseEvent e) {}
             public void mouseClicked(MouseEvent e) {
+                player.setCharacter(character_dir[selected]);
+                System.out.println("User selected "+character_dir[selected]);
                 if(wall==null){
                     try {
-                        wall = new WallSelect();
+                        wall = new WallSelect(player);
                     }
                     catch (Exception ex) {
                         Logger.getLogger(MainApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
