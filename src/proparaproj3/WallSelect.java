@@ -26,11 +26,11 @@ public class WallSelect extends JFrame{
     private String [] name = {"Aladdin", "Mulan", "Mermaid", "Tangled", "Toy Story"};
     private int frameWidth = 2000, frameHeight = 1000;
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new WallSelect();
-    }
+    }*/
     
-    public WallSelect(){
+    public WallSelect(PlayerInfo player){
         setTitle("Select Wallpaper");
         setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
@@ -40,10 +40,10 @@ public class WallSelect extends JFrame{
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
         
-        AddComponents();
+        AddComponents(player);
     }
     
-    public void AddComponents(){
+    public void AddComponents(PlayerInfo player){
         BG = new MyImageIcon("picture/wallpaper/selectWall.png").resize(frameWidth,frameHeight);
         nextPage = new MyImageIcon("picture/button/forward.png").resize(200,200);
         soundImg = new MyImageIcon("picture/button/sound.png").resize(200,200);
@@ -69,7 +69,7 @@ public class WallSelect extends JFrame{
                 if(tierPage==null){
                     try {
                         cur_song.stop();
-                        tierPage = new Tier();
+                        tierPage = new Tier(player);
                     }
                     catch (Exception ex) {
                         Logger.getLogger(MainApplication.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,6 +109,7 @@ public class WallSelect extends JFrame{
                       default:
                           break;
                   }
+                player.setThemesong(cur_song);
                 cur_song.playOnce();
             }
             }
@@ -118,16 +119,29 @@ public class WallSelect extends JFrame{
         combo.addItemListener( new ItemListener() {
             public void itemStateChanged( ItemEvent e )
             {
-                if(combo.getSelectedIndex()==0){
-                    drawpane.setIcon(aladdin);
-                }else if(combo.getSelectedIndex()==1){
-                    drawpane.setIcon(mulan);
-                }else if(combo.getSelectedIndex()==2){
-                    drawpane.setIcon(mermiad);
-                }else if(combo.getSelectedIndex()==3){
-                    drawpane.setIcon(tangled);
-                }else if(combo.getSelectedIndex()==4){
-                    drawpane.setIcon(toys);
+                switch (combo.getSelectedIndex()) {
+                    case 0:
+                        drawpane.setIcon(aladdin);
+                        player.setBackground(aladdin);
+                        break;
+                    case 1:
+                        drawpane.setIcon(mulan);
+                        player.setBackground(mulan);
+                        break;
+                    case 2:
+                        drawpane.setIcon(mermiad);
+                        player.setBackground(mermiad);
+                        break;
+                    case 3:
+                        drawpane.setIcon(tangled);
+                        player.setBackground(tangled);
+                        break;
+                    case 4:
+                        drawpane.setIcon(toys);
+                        player.setBackground(toys);
+                        break;
+                    default:
+                        break;
                 }
             }
         });

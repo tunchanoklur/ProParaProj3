@@ -23,6 +23,8 @@ public class MainApplication extends JFrame{
     private MyImageIcon highscoreImg[] = new MyImageIcon[2];
     private SoundEffect main_sound;
     private int frameWidth = 2000, frameHeight = 1000;
+    //user info
+    private PlayerInfo player = new PlayerInfo();
     
     public static void main(String[] args) {
         new MainApplication();
@@ -72,7 +74,7 @@ public class MainApplication extends JFrame{
                 if(charPage==null){
                     try {
                         main_sound.stop();
-                        charPage = new SelectCharacter();
+                        charPage = new SelectCharacter(player);
                     }
                     catch (Exception ex) {
                         Logger.getLogger(MainApplication.class.getName()).log(Level.SEVERE, null, ex);
@@ -164,7 +166,10 @@ class MyImageIcon extends ImageIcon {
         return new MyImageIcon(newimg);
     }
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> kik
 // Auxiliary class to play sound effect (support .wav or .mid file)
 class SoundEffect {
 
@@ -190,5 +195,49 @@ class SoundEffect {
 
     public void stop() {
         audio.stop();
+    }
+}
+
+class PlayerInfo{
+    private String name;
+    private MyImageIcon character,background;
+    private SoundEffect themesong;
+    private int level,score;//0easy 1normal 2insane
+    public PlayerInfo(){
+        character = null;
+        background = null;
+        themesong=null;
+        level=0;
+        score=0;
+    }
+    public void setCharacter(String c){
+        character = new MyImageIcon(c);
+    }
+    public void setBackground(MyImageIcon bg){
+        background = bg;
+    }
+    public void setThemesong(SoundEffect song){
+        themesong = song;
+    }
+    public void setLevel(int lvl){
+        level = lvl;
+    }
+    public void setScore(int s){
+        score = s;
+    }
+    public void setName(String n){
+        name = n;
+    }
+    public int giveLevel(){
+        return level;
+    }
+    public MyImageIcon giveBackground(){
+        return background;
+    }
+    public MyImageIcon giveCharacter(){
+        return character;
+    }
+    public SoundEffect giveThemesong(){
+        return themesong;
     }
 }

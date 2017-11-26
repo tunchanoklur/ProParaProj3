@@ -3,27 +3,24 @@ package proparaproj3;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Tier extends JFrame {
-    GamePlay    gameplay;
+    GamePlay gameplay;
 
     private JPanel contentpane;
     private JLabel drawpane;
-    private JLabel      next;
-    private MyImageIcon backgroundImg,goImg,nextImg;
-    private MySoundEffect   readyGo;
+    private MyImageIcon backgroundImg,goImg;
+    private SoundEffect   readyGo;
     private JButton button[] = new JButton[3];
     private int frameWidth = 2000, frameHeight = 1000;
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new Tier();
-    }
+    }*/
     
-    public Tier() {
+    public Tier(PlayerInfo player) {
         setTitle("Choose level");
         setBounds(0,0, frameWidth, frameHeight);
         setResizable(false);
@@ -32,8 +29,7 @@ public class Tier extends JFrame {
         contentpane = (JPanel)getContentPane();
         contentpane.setLayout(new BorderLayout());
         backgroundImg = new MyImageIcon("picture/wallpaper/level_wall.png").resize(frameWidth,frameHeight);
-        nextImg = new MyImageIcon("picture/button/forward.png").resize(200,200);
-        readyGo = new MySoundEffect("sound/readyyy.wav");
+        readyGo = new SoundEffect("sound/readyyy.wav");
         
         drawpane = new JLabel();
         drawpane.setIcon(backgroundImg);
@@ -50,6 +46,8 @@ public class Tier extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 JButton button = (JButton) event.getSource();
                 button.setEnabled(false);
+                player.setLevel(0);
+                setGamePlay(player);
             }
         }
         );
@@ -59,6 +57,8 @@ public class Tier extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 JButton button = (JButton) event.getSource();
                 button.setEnabled(false);
+                player.setLevel(1);
+                setGamePlay(player);
             }
         });
         /////////////
@@ -67,31 +67,11 @@ public class Tier extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 JButton button = (JButton) event.getSource();
                 button.setEnabled(false);
+                player.setLevel(2);
+                setGamePlay(player);
             }
         });
-        next = new JLabel(nextImg);
-        next.addMouseListener(new MouseListener(){
-            public void mousePressed(MouseEvent e) {}
-            public void mouseReleased(MouseEvent e) {}
-            public void mouseEntered(MouseEvent e) {}
-            public void mouseExited(MouseEvent e) {}
-            public void mouseClicked(MouseEvent e) {
-                if(gameplay==null){
-                    try {
-                        readyGo.playOnce();
-                        gameplay = new GamePlay();
-                    }
-                    catch (Exception ex) {
-                        Logger.getLogger(MainApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-                    }
-                }else gameplay.setVisible(true);
-                setVisible(false);
-            }
-   
-        });
-
-        next.setBounds(800,500,400,200);
-        contentpane.add(next);
+       
         button[0].setBounds(225,800,200,100);
         contentpane.add(button[0]);
         button[1].setBounds(925,800,200,100);
@@ -101,31 +81,18 @@ public class Tier extends JFrame {
         contentpane.add(drawpane, BorderLayout.CENTER);
         validate();
     }
+    private void setGamePlay(PlayerInfo player) {
+        if (gameplay == null) {
+            try {
+                readyGo.playOnce();
+                gameplay = new GamePlay(player);
+            } catch (Exception ex) {
+                Logger.getLogger(MainApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        } else {
+            gameplay.setVisible(true);
+        }
+        setVisible(false);
+    }
 
 }
-class MySoundEffect {
-
-    private java.applet.AudioClip audio;
-
-    public MySoundEffect(String filename) {
-        try {
-            java.io.File file = new java.io.File(filename);
-            audio = java.applet.Applet.newAudioClip(file.toURL());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void playOnce() {
-        audio.play();
-    }
-
-    public void playLoop() {
-        audio.loop();
-    }
-
-    public void stop() {
-        audio.stop();
-    }
-};

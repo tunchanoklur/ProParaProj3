@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class GamePlay extends JFrame {
@@ -16,7 +18,7 @@ public class GamePlay extends JFrame {
     private JTextField scoreText,Time;
     private JLabel characterLabel, dropLabel[],specialLabel[];
     private MyImageIcon backgroundImg, characterImg, dropImg[],specialImg[];
-    private SoundEffect hitSound[] = new SoundEffect[3], themeSound;
+    private SoundEffect hitSound[] = new SoundEffect[4], themeSound;
     
     // working variables - adjust the values as you want
     private Random rand = new Random();
@@ -30,20 +32,37 @@ public class GamePlay extends JFrame {
     private int time=60;
     private boolean playhitsound =true,playing=true;
     private boolean left =false, right=false;
-    private int score;
+    private int score,item_num = 10;
+    private PrintWriter printtofile;
     private String highs="";
+<<<<<<< HEAD
     private String outfile = "output.txt";    
     private String userName;
     public static void main(String[] args) throws InterruptedException {
+=======
+    private String outfile = "output.txt";
+    
+    /*public static void main(String[] args) throws InterruptedException {
+>>>>>>> kik
         new GamePlay();
-    }
+    }*/
     //////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
     public GamePlay() throws InterruptedException{
         
+=======
+    public GamePlay(PlayerInfo player) throws InterruptedException{
+        try {
+            printtofile = new PrintWriter(new File("output.txt"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GamePlay.class.getName()).log(Level.SEVERE, null, ex);
+        }
+>>>>>>> kik
         setTitle("Catch Me : Disney");
         setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
+        setFocusable(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
                 userName = JOptionPane.showInputDialog("Enter Your Name");
@@ -51,15 +70,30 @@ public class GamePlay extends JFrame {
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
         addWindowListener( new MyWindowListener() );
-        AddComponents();
+        AddComponents(player);
         setCharacterThread();
     }
 
     /////////////////////////////////////////////////////////////////////////
-    public void AddComponents() throws InterruptedException {
+    public void AddComponents(PlayerInfo player) throws InterruptedException {
         //add image
-        backgroundImg = new MyImageIcon("picture/wallpaper/option_wall.png").resize(contentpane.getWidth(),contentpane.getHeight());
-        characterImg = new MyImageIcon("picture/user_icon/user_cat.png");
+        /*backgroundImg = new MyImageIcon("picture/wallpaper/option_wall.png").resize(contentpane.getWidth(),contentpane.getHeight());
+        characterImg = new MyImageIcon("picture/user_icon/user_cat.png");*/
+        backgroundImg = player.giveBackground();
+        characterImg = player.giveCharacter();
+        //drop rate
+        switch (player.giveLevel()) {
+            case 0:
+                item_num = 5;
+                break;
+            case 1:
+                item_num = 10;
+                break;
+            default:
+                item_num = 17;
+                break;
+        }
+        
         dropImg = new MyImageIcon[22];
         for(int i=0;i<22;i++){
             dropImg[i] = new MyImageIcon("picture/tsum/tsum"+i+".png").resize(dropWidth,dropHeight);
@@ -75,7 +109,7 @@ public class GamePlay extends JFrame {
         drawpane.setLayout(null);
         
         //add key listener to handle move left - right
-        addKeyListener(new KeyListener() {
+        this.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {}
             //when press left-right
             public void keyPressed(KeyEvent e) {
@@ -105,8 +139,8 @@ public class GamePlay extends JFrame {
         characterLabel.setBounds(characterCurX, frameHeight-characterHeight-50, characterWidth, characterHeight);
         drawpane.add(characterLabel);
 
-        dropLabel = new JLabel[10];
-        for(int i=0;i<10;i++){
+        dropLabel = new JLabel[item_num];
+        for(int i=0;i<item_num;i++){
             int new_tsum = rand.nextInt(22) + 0;
             dropLabel[i]= new JLabel(dropImg[new_tsum]);
             dropLabel[i].setBounds(dropCurX,-dropHeight, dropWidth, dropHeight );
@@ -125,6 +159,9 @@ public class GamePlay extends JFrame {
         hitSound[0] = new SoundEffect("sound/wingwing.wav");
         hitSound[1] = new SoundEffect("sound/laugh.wav");
         hitSound[2] = new SoundEffect("sound/storm.wav");
+        themeSound = player.giveThemesong();
+        hitSound[3]=new SoundEffect("sound/flasd_edit.wav");
+        hitSound[3]=new SoundEffect("sound/flash_2.wav");
         themeSound = new SoundEffect("sound/toystory.wav");
         themeSound.playLoop();
         
@@ -146,8 +183,8 @@ public class GamePlay extends JFrame {
         repaint();
         validate();
         
-        dropclass =new DropCharacter[10];
-        for(int i=0;i<10;i++){
+        dropclass =new DropCharacter[item_num];
+        for(int i=0;i<item_num;i++){
             dropclass[i] = new DropCharacter(i);
             dropclass[i].start();
             try {
@@ -339,12 +376,13 @@ public class GamePlay extends JFrame {
                         break;
                     default:
                         if (playhitsound) {
-                            hitSound[1].playOnce();
+                            hitSound[3].playOnce();
                         }
                         if(characterspeed<350)characterspeed+=40;
                         break;
                         
                 }
+                repaint();
                 validate();
                 specialCurX = rand.nextInt(frameWidth-150) + 0;
                 specialCurY=-150;
