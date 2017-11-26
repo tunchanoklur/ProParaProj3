@@ -37,6 +37,7 @@ public class Score extends JDialog {
         setTitle("Catch Me : Score");
         setBounds(50, 50, frameWidth, frameHeight);
         setResizable(false);
+        setModal(true);
         setVisible(true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         
@@ -84,20 +85,10 @@ public class Score extends JDialog {
 			public void caretUpdate( CaretEvent e )
 			{
 				inputName = userName.getText();
-                                System.out.printf(inputName);
+                                //System.out.printf(inputName);
 			}
 		});
         
-        
-
-        /*JFrame frame = (JFrame) e.getWindow();
-            contentpane = (JPanel) frame.getContentPane();
-            JOptionPane.showMessageDialog(
-                    new JFrame(),
-                    "Total Score = " + score,
-                    "Catch Me : Disney",
-                    JOptionPane.INFORMATION_MESSAGE);
-            */
         home.setBounds(0,60,60,60);
         play.setBounds(60,60,60,100);
         
@@ -105,9 +96,7 @@ public class Score extends JDialog {
         g.add(userName);
         g.add(home);
         g.add(play);
-        
-        //contentpane.add(home);
-        //contentpane.add(play);
+
         contentpane.add(drawpane);
         contentpane.add(g);
         validate();
