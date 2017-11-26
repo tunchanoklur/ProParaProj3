@@ -32,14 +32,13 @@ public class GamePlay extends JFrame {
     private boolean left =false, right=false;
     private int score;
     private String highs="";
-    private String outfile = "output.txt";
-    
-    
+    private String outfile = "output.txt";    
+    private String userName;
     public static void main(String[] args) throws InterruptedException {
         new GamePlay();
     }
     //////////////////////////////////////////////////////////////////////////
-    public GamePlay() throws InterruptedException{
+    public GamePlay() throws InterruptedException{        
         setTitle("Catch Me : Disney");
         setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
@@ -50,6 +49,9 @@ public class GamePlay extends JFrame {
         contentpane.setLayout(new BorderLayout());
         addWindowListener( new MyWindowListener() );
         AddComponents();
+        
+                userName = JOptionPane.showInputDialog("Enter Your Name");
+
         setCharacterThread();
     }
 
@@ -154,6 +156,7 @@ public class GamePlay extends JFrame {
                 e.printStackTrace();
             }
         }
+        
         specialclass[0].start();
         setTimeThread();
         validate();
