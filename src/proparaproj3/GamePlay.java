@@ -3,6 +3,10 @@ package proparaproj3;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import javax.swing.*;
 
 public class GamePlay extends JFrame {
@@ -27,6 +31,9 @@ public class GamePlay extends JFrame {
     private boolean playhitsound =true,playing=true;
     private boolean left =false, right=false;
     private int score;
+    private String highs="";
+    private String outfile = "output.txt";
+    
     
     public static void main(String[] args) throws InterruptedException {
         new GamePlay();
@@ -237,9 +244,39 @@ public class GamePlay extends JFrame {
                 dropLabel[id].setIcon(dropImg[new_tsum]);
                 score++;
                 scoreText.setText(Integer.toString(score));
+                highs = (Integer.toString(score));
+                getScore(highs);
                 validate();
             }
         }
+
+        private void getScore(String highs) {   
+            try{
+            PrintWriter write = new PrintWriter(outfile);
+            write.printf("%s",highs);
+            write.close();
+        }catch (Exception e){System.out.printf("Error");}    
+        }
+        
+        private void find_highest(){
+            ArrayList <String> list =new ArrayList <String>();
+            try{
+            Scanner scan = new Scanner (new File(outfile));
+            while(scan.hasNext()){
+                String highscore = scan.nextLine();
+                String [] buf = highscore.split("\\s+");
+                
+                for(int i=0; i<list.size();i++)
+                {
+                    list.add(highscore);
+                }
+                Collections.sort(list);
+                System.out.printf("highest score %s\n",list);
+            }
+            scan.close();
+        }catch (Exception e){}
+        }
+        
     };
     ///////////////////////////////Special Items///////////////////////////////////////
     class SpecialItem extends Thread {
@@ -313,7 +350,8 @@ public class GamePlay extends JFrame {
                 repaint();
             }
         }
-    }
+       
+    } 
     ///////////////////////////////////////////////////////////////////////////////////////
     class MyWindowListener extends WindowAdapter//when we open / close the frame
     {
@@ -329,4 +367,5 @@ public class GamePlay extends JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
         }
     };
+    
 }
