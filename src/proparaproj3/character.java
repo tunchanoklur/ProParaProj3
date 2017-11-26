@@ -1,10 +1,7 @@
 package proparaproj3;
 
 import java.awt.*;
-import java.awt.event.*;
-import static java.lang.Thread.sleep;
 import javax.swing.*;
-import java.util.Random;
 
 public class Character extends JFrame {
 

@@ -1,20 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proparaproj3;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
-public class level extends JFrame{
+
+public class Level extends JFrame{
     private JLabel          contentpane;
 	//private Mycharacter     show_char;
 	private int frameWidth = 2000, frameHeight = 1000;
-
-	public level()
+        public static void main(String[] args) {
+            new Level();
+        }
+////
+	public Level()
 	{
 		setTitle("Chose level");
 		setBounds(200, 100, frameWidth, frameHeight);
