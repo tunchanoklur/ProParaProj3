@@ -38,20 +38,20 @@ public class GamePlay extends JFrame {
         new GamePlay();
     }
     //////////////////////////////////////////////////////////////////////////
-    public GamePlay() throws InterruptedException{        
+    public GamePlay() throws InterruptedException{
+        
         setTitle("Catch Me : Disney");
         setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+                userName = JOptionPane.showInputDialog("Enter Your Name");
+
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
         addWindowListener( new MyWindowListener() );
         AddComponents();
-        
-                userName = JOptionPane.showInputDialog("Enter Your Name");
-
         setCharacterThread();
     }
 
