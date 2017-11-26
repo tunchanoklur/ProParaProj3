@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 
 public class GamePlay extends JFrame {
     // components
@@ -29,7 +31,7 @@ public class GamePlay extends JFrame {
     private int characterCurX = 700,characterspeed=20;
     private int dropWidth = 60, dropHeight = 60;
     private int dropCurX = 0;
-    private int time=60;
+    private int time=120;
     private boolean playhitsound =true,playing=true;
     private boolean left =false, right=false;
     private int score,item_num = 10;
@@ -55,7 +57,7 @@ public class GamePlay extends JFrame {
         contentpane.setLayout(new BorderLayout());
         addWindowListener( new MyWindowListener() );
         AddComponents(player);
-        setCharacterThread();
+        setCharacterThread(player);
         
         if(!playing)userName = JOptionPane.showInputDialog("Enter Your Name");
     }
@@ -63,8 +65,6 @@ public class GamePlay extends JFrame {
     /////////////////////////////////////////////////////////////////////////
     public void AddComponents(PlayerInfo player) throws InterruptedException {
         //add image
-        /*backgroundImg = new MyImageIcon("picture/wallpaper/option_wall.png").resize(contentpane.getWidth(),contentpane.getHeight());
-        characterImg = new MyImageIcon("picture/user_icon/user_cat.png");*/
         backgroundImg = player.giveBackground();
         characterImg = player.giveCharacter();
         //drop rate
@@ -76,7 +76,7 @@ public class GamePlay extends JFrame {
                 item_num = 10;
                 break;
             default:
-                item_num = 17;
+                item_num = 20;
                 break;
         }
         
@@ -100,23 +100,19 @@ public class GamePlay extends JFrame {
             //when press left-right
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    System.out.println("Pressing Left");
                     left=true;
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     right=true;
-                    System.out.println("Pressing Right");
                 }
             }
             //when we release, it stop
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     left=false;
-                    System.out.println("Release Left");
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     right=false;
-                    System.out.println("Release Right");
                 }
             }
         });
@@ -203,7 +199,7 @@ public class GamePlay extends JFrame {
         timeThread.start();
     }
     /////////////////////////////Character Thread////////////////////////////////
-    public void setCharacterThread() {
+    public void setCharacterThread(PlayerInfo player) {
         Thread characterThread = new Thread() {
             public void run() {
                 while(playing) {
@@ -224,6 +220,8 @@ public class GamePlay extends JFrame {
                     }
 
                 } // end while
+                player.setScore(score);
+                System.out.println("final score:"+score);
             } // end run
         }; // end thread creation
         characterThread.start();
@@ -352,7 +350,8 @@ public class GamePlay extends JFrame {
                         if (playhitsound) {
                             hitSound[0].playOnce();
                         }
-                        time+=10;
+                        time+=15;
+                        Time.setText(Integer.toString(time));
                         break;
                     case 2:
                         //lightning
@@ -362,6 +361,7 @@ public class GamePlay extends JFrame {
                         if(characterspeed>100)characterspeed-=30;
                         break;
                     default:
+                        //the flash
                         if (playhitsound) {
                             hitSound[3].playOnce();
                         }
@@ -378,6 +378,7 @@ public class GamePlay extends JFrame {
                 repaint();
             }
         }
+    ////////////////////////////////////////Pop-up Score////////////////////////////////
        
     } 
     ///////////////////////////////////////////////////////////////////////////////////////

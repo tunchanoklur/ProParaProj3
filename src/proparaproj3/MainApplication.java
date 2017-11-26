@@ -201,9 +201,10 @@ class PlayerInfo{
     private SoundEffect themesong;
     private int level,score;//0easy 1normal 2insane
     public PlayerInfo(){
-        character = null;
-        background = null;
-        themesong=null;
+        //set default
+        character = new MyImageIcon("picture/user_icon/user0.png");
+        background = new MyImageIcon("picture/wallpaper/option_wall.png");
+        themesong= new SoundEffect("sound/toystory.wav");
         level=0;
         score=0;
     }
@@ -236,5 +237,8 @@ class PlayerInfo{
     }
     public SoundEffect giveThemesong(){
         return themesong;
+    }
+    public int giveScore(){
+        return score;
     }
 }

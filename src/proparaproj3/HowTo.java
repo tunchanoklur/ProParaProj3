@@ -35,18 +35,11 @@ public class HowTo extends JDialog{
         instruction_bg = new MyImageIcon("picture/wallpaper/ins_1.png").resize(frameWidth,frameHeight);
         backImg = new MyImageIcon("picture/button/backward.png").resize(60,60);
         gameplayImg[0] = new MyImageIcon("picture/button/LRbutton.gif");
-       /* for(int i=1;i<4;i++)
-        {
-            gameplayImg[i] = new MyImageIcon("picture/tsum/special"+i+".gif");
-        }
-        /*gameplayImg[0] = new MyImageIcon("picture/button/LRbutton.gif");*/
-       
+
         gameplayImg[1] = new MyImageIcon("picture/tsum/special0.gif");
         gameplayImg[2] = new MyImageIcon("picture/tsum/hourg_1.gif");
         gameplayImg[3] = new MyImageIcon("picture/tsum/special2.gif");
         gameplayImg[4] = new MyImageIcon("picture/tsum/slot_3.gif");
-        //gameplayImg[4] = new MyImageIcon("picture/tsum/tsum_time.png").resize(75,91);
-        
         
         LRbutton = new JLabel(gameplayImg[0]);
         Bomb = new JLabel(gameplayImg[1]);

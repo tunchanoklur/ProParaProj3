@@ -22,7 +22,7 @@ public class WallSelect extends JFrame{
     private JList       musicList;
     private MyImageIcon aladdin, mulan, mermiad, tangled, toys;
     private MyImageIcon BG, nextPage, soundImg;
-    private SoundEffect   alaSong, muSong, merSong, tangSong, toySong,cur_song;
+    private SoundEffect   alaSong, muSong, merSong, tangSong, toySong,cur_song = new SoundEffect("sound/toystory.wav");
     private String [] name = {"Aladdin", "Mulan", "Mermaid", "Tangled", "Toy Story"};
     private int frameWidth = 2000, frameHeight = 1000;
     
