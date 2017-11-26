@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 public class MainApplication extends JFrame{
     //pages
     SelectCharacter   charPage;
-    Instruction instructionPage;
-    Credit      creditPage;
-    //trophy          highscorePage;
+    Instruction       instructionPage;
+    Credit            creditPage;
+    Trophy            highscorePage;
     //components
     private JPanel contentpane;
     private JLabel drawpane;
@@ -71,6 +71,7 @@ public class MainApplication extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 if(charPage==null){
                     try {
+                        main_sound.stop();
                         charPage = new SelectCharacter();
                     }
                     catch (Exception ex) {
@@ -111,6 +112,8 @@ public class MainApplication extends JFrame{
             }
             public void mouseClicked(MouseEvent e) {
                 /*Link to page highscore*/
+                if(highscorePage==null)highscorePage = new Trophy();
+                else highscorePage.setVisible(true);
             }
             public void mousePressed(MouseEvent e) {}
             public void mouseReleased(MouseEvent e) {}
