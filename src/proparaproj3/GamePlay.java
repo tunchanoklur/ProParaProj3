@@ -35,43 +35,29 @@ public class GamePlay extends JFrame {
     private int score,item_num = 10;
     private PrintWriter printtofile;
     private String highs="";
-<<<<<<< HEAD
     private String outfile = "output.txt";    
     private String userName;
-    public static void main(String[] args) throws InterruptedException {
-=======
-    private String outfile = "output.txt";
     
-    /*public static void main(String[] args) throws InterruptedException {
->>>>>>> kik
-        new GamePlay();
-    }*/
-    //////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD
-    public GamePlay() throws InterruptedException{
-        
-=======
     public GamePlay(PlayerInfo player) throws InterruptedException{
         try {
             printtofile = new PrintWriter(new File("output.txt"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GamePlay.class.getName()).log(Level.SEVERE, null, ex);
         }
->>>>>>> kik
         setTitle("Catch Me : Disney");
         setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         setFocusable(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-                userName = JOptionPane.showInputDialog("Enter Your Name");
-
+        
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
         addWindowListener( new MyWindowListener() );
         AddComponents(player);
         setCharacterThread();
+        
+        if(!playing)userName = JOptionPane.showInputDialog("Enter Your Name");
     }
 
     /////////////////////////////////////////////////////////////////////////
@@ -359,6 +345,7 @@ public class GamePlay extends JFrame {
                             hitSound[1].playOnce();
                         }
                         score -= 10;
+                        scoreText.setText(Integer.toString(score));
                         break;
                     case 1:
                         //hourglass

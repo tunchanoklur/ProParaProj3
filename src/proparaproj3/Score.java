@@ -65,11 +65,11 @@ public class Score extends JDialog {
         });
         play.addMouseListener( new MouseListener(){
             public void mouseClicked(MouseEvent e) {
-                try {
+                /*try {
                     gamePage = new GamePlay();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Score.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }*/
             }
             public void mousePressed(MouseEvent e) {}
             public void mouseReleased(MouseEvent e) {}

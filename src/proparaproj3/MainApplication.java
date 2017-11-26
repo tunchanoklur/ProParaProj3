@@ -8,10 +8,10 @@ import java.util.logging.Logger;
 
 public class MainApplication extends JFrame{
     //pages
-    SelectCharacter   charPage;
-    Instruction       instructionPage;
-    Credit            creditPage;
-    Trophy            highscorePage;
+    SelectCharacter charPage;
+    HowTo howtoPage;
+    Credit creditPage;
+    Trophy highscorePage;
     //components
     private JPanel contentpane;
     private JLabel drawpane;
@@ -97,8 +97,8 @@ public class MainApplication extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 //in case we repress the button while opening it
                 //instead of getting new dialog, it pop the old one up
-                if(instructionPage==null)instructionPage = new Instruction();
-                else instructionPage.setVisible(true);
+                if(howtoPage==null)howtoPage = new HowTo();
+                else howtoPage.setVisible(true);
                 
             }
             public void mousePressed(MouseEvent e) {}
@@ -166,10 +166,7 @@ class MyImageIcon extends ImageIcon {
         return new MyImageIcon(newimg);
     }
 };
-<<<<<<< HEAD
 
-=======
->>>>>>> kik
 // Auxiliary class to play sound effect (support .wav or .mid file)
 class SoundEffect {
 

@@ -3,7 +3,8 @@ package proparaproj3;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-public class Instruction extends JDialog{
+
+public class HowTo extends JDialog{
     //components
     final private JPanel contentpane;
     private JLabel drawpane;
@@ -16,7 +17,7 @@ public class Instruction extends JDialog{
     /*public static void main(String[] args) {
         new Instruction();
     }*/
-    public Instruction(){
+    public HowTo(){
         //super(owner,"Catch Me : How To Play?",true);
         setTitle("Catch Me : How To Play?");
         setBounds(50, 50, frameWidth, frameHeight);
