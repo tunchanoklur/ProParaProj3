@@ -134,12 +134,12 @@ public class WallSelect extends JFrame{
         soundIcon = new JLabel(soundImg);
         soundIcon.setBounds(200, 0, 200, 200);
         next.setBounds(800,500,400,200);
-        contentpane.add(next);
         musicList.setBounds(0, 0, 200, 210);
         musicList.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setSize(combo.getWidth(),combo.getHeight());
         combo.setBounds(1730,0,200,100);
+        contentpane.add(next);
         contentpane.add(soundIcon);
         contentpane.add(musicList);
         contentpane.add(combo);
