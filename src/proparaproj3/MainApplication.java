@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 public class MainApplication extends JFrame{
     //pages
+    
     GamePlay gameplay;
     Instruction instructionPage;
     Credit  creditPage;
