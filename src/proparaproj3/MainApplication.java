@@ -149,7 +149,7 @@ public class MainApplication extends JFrame{
 }
 
 // Auxiliary class to resize image
-/*class MyImageIcon extends ImageIcon {
+class MyImageIcon extends ImageIcon {
 
     public MyImageIcon(String fname) {
         super(fname);
@@ -164,7 +164,7 @@ public class MainApplication extends JFrame{
         return new MyImageIcon(newimg);
     }
 };
-*/
+
 // Auxiliary class to play sound effect (support .wav or .mid file)
 class SoundEffect {
 

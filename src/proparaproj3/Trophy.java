@@ -35,7 +35,7 @@ public class Trophy extends JFrame{
         AddComponents();
     }
     public void AddComponents(){
-        BG = new MyImageIcon("picture/wallpaper/congrat_wall.png").resize(frameWidth,frameHeight);
+        BG = new MyImageIcon("picture/wallpaper/high_score.png").resize(frameWidth,frameHeight);
         goBack =  new MyImageIcon("picture/button/backward.png").resize(60,60);
         
         drawpane = new JLabel();
