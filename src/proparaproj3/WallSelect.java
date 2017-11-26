@@ -61,6 +61,7 @@ public class WallSelect extends JFrame{
         musicList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         musicList.addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent e) {
+              if( !e.getValueIsAdjusting()){  
                 if(musicList.getSelectedIndex()==0){
                     alaSong.playOnce();
                 }else if(musicList.getSelectedIndex()==1){
@@ -72,6 +73,7 @@ public class WallSelect extends JFrame{
                 }else if(musicList.getSelectedIndex()==4){
                     toySong.playOnce();
                 }
+            }
             }
         });
         
