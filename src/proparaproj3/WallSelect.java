@@ -17,11 +17,11 @@ public class WallSelect extends JFrame{
 
     private JPanel      contentpane;
     private JLabel      drawpane;
-    private JLabel      next;
+    private JLabel      next, soundIcon;
     private JComboBox   combo;
     private JList       musicList;
     private MyImageIcon aladdin, mulan, mermiad, tangled, toys;
-    private MyImageIcon BG, nextPage;
+    private MyImageIcon BG, nextPage, soundImg;
     private SoundEffect   alaSong, muSong, merSong, tangSong, toySong,cur_song;
     private String [] name = {"Aladdin", "Mulan", "Mermaid", "Tangled", "Toy Story"};
     private int frameWidth = 2000, frameHeight = 1000;
@@ -46,6 +46,7 @@ public class WallSelect extends JFrame{
     public void AddComponents(){
         BG = new MyImageIcon("picture/wallpaper/selectWall.png").resize(frameWidth,frameHeight);
         nextPage = new MyImageIcon("picture/button/forward.png").resize(200,200);
+        soundImg = new MyImageIcon("picture/button/sound.png").resize(200,200);
         aladdin = new MyImageIcon("picture/wallpaper/aladin_wall.png").resize(frameWidth,frameHeight);
         mulan = new MyImageIcon("picture/wallpaper/mulan_wall.png").resize(frameWidth,frameHeight);
         mermiad = new MyImageIcon("picture/wallpaper/arial_wall.png").resize(frameWidth,frameHeight);
@@ -130,6 +131,8 @@ public class WallSelect extends JFrame{
             }
         });
 
+        soundIcon = new JLabel(soundImg);
+        soundIcon.setBounds(200, 0, 200, 200);
         next.setBounds(800,500,400,200);
         contentpane.add(next);
         musicList.setBounds(0, 0, 200, 210);
@@ -137,6 +140,7 @@ public class WallSelect extends JFrame{
         combo.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setSize(combo.getWidth(),combo.getHeight());
         combo.setBounds(1730,0,200,100);
+        contentpane.add(soundIcon);
         contentpane.add(musicList);
         contentpane.add(combo);
         contentpane.add(drawpane);
