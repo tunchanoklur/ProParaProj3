@@ -18,7 +18,7 @@ public class GamePlay extends JFrame {
     private JTextField scoreText,Time;
     private JLabel characterLabel, dropLabel[],specialLabel[];
     private MyImageIcon backgroundImg, characterImg, dropImg[],specialImg[];
-    private SoundEffect hitSound[] = new SoundEffect[3], themeSound;
+    private SoundEffect hitSound[] = new SoundEffect[4], themeSound;
     
     // working variables - adjust the values as you want
     private Random rand = new Random();
@@ -146,7 +146,12 @@ public class GamePlay extends JFrame {
         hitSound[0] = new SoundEffect("sound/wingwing.wav");
         hitSound[1] = new SoundEffect("sound/laugh.wav");
         hitSound[2] = new SoundEffect("sound/storm.wav");
+<<<<<<< HEAD
         themeSound = player.giveThemesong();
+=======
+        hitSound[3]=new SoundEffect("sound/flasd_edit.wav");
+        themeSound = new SoundEffect("sound/toystory.wav");
+>>>>>>> b21fd75a5b0d788608bc1ea96676bfb1cf3fd02c
         themeSound.playLoop();
         
         Time = new JTextField(Integer.toString(time),5);
@@ -359,7 +364,7 @@ public class GamePlay extends JFrame {
                         break;
                     default:
                         if (playhitsound) {
-                            hitSound[1].playOnce();
+                            hitSound[3].playOnce();
                         }
                         if(characterspeed<350)characterspeed+=40;
                         break;
