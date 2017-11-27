@@ -3,6 +3,8 @@ package proparaproj3;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -19,6 +21,8 @@ public class Trophy extends JFrame{
     private JButton     backButton;
     private MyImageIcon BG, goBack;
     private int frameWidth = 2000, frameHeight = 1000;
+    private Scanner scan;
+    private ArrayList<PlayerInfo> customers;
     public static void main(String[] args) {
         new Trophy();
     }
@@ -29,6 +33,8 @@ public class Trophy extends JFrame{
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
+        scan=new Scanner("output.txt");
+        ArrayList<PlayerInfo> customers=new ArrayList<PlayerInfo>();
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
         

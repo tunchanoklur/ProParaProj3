@@ -221,14 +221,13 @@ class PlayerInfo{
     }
     public void PrintToFile(){
         String lvl;
-        
         switch (level) {
             case 0: lvl="Easy";break;
             case 1: lvl="Normal";break;
             default:lvl="Insane";break;
         }
-        
         printer.printf("%15s %3d %7s\n",name,score,lvl);
+        printer.flush();
     }
     public void setCharacter(String c){
         character = new MyImageIcon(c);

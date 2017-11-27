@@ -37,10 +37,6 @@ public class GamePlay extends JFrame {
     private boolean playhitsound =true,playing=true;
     private boolean left =false, right=false;
     private int score,item_num = 10;
-    private PrintWriter printtofile;
-    private String highs="";
-    private String outfile = "output.txt";
-    private String userName;
     
     public GamePlay(PlayerInfo player) throws InterruptedException{
         setTitle("Catch Me : Disney");
@@ -54,9 +50,20 @@ public class GamePlay extends JFrame {
         contentpane.setLayout(new BorderLayout());
         addWindowListener( new MyWindowListener() );
         AddComponents(player);
-        setCharacterThread(player);
         
-        if(!playing)userName = JOptionPane.showInputDialog("Enter Your Name");
+        int bonus=1;
+        switch (player.giveLevel()) {
+            case 0:
+                bonus=1;
+                break;
+            case 1:
+                bonus=1;
+                break;
+            default:
+                bonus=2;
+                break;
+        }
+        setCharacterThread(player,bonus);
     }
 
     /////////////////////////////////////////////////////////////////////////
@@ -172,7 +179,6 @@ public class GamePlay extends JFrame {
                 e.printStackTrace();
             }
         }
-        
         specialclass[0].start();
         setTimeThread();
         validate();
@@ -196,7 +202,7 @@ public class GamePlay extends JFrame {
         timeThread.start();
     }
     /////////////////////////////Character Thread////////////////////////////////
-    public void setCharacterThread(PlayerInfo player) {
+    public void setCharacterThread(PlayerInfo player,int bonus) {
         Thread characterThread = new Thread() {
             public void run() {
                 while(playing) {
@@ -217,7 +223,7 @@ public class GamePlay extends JFrame {
                     }
                 } // end while
                 themeSound.stop();
-                player.setScore(score);
+                player.setScore(score*bonus);
                 System.out.println("final score:"+score);
                 scoreModal = new Score(frame,player);
             } // end run
@@ -271,34 +277,6 @@ public class GamePlay extends JFrame {
                 validate();
             }
         }
-
-        private void getScore(String highs) {   
-            try{
-            PrintWriter write = new PrintWriter(outfile);
-            write.printf("%s",highs);
-            write.close();
-        }catch (Exception e){System.out.printf("Error");}    
-        }
-        
-        private void find_highest(){
-            ArrayList <String> list =new ArrayList <String>();
-            try{
-            Scanner scan = new Scanner (new File(outfile));
-            while(scan.hasNext()){
-                String highscore = scan.nextLine();
-                String [] buf = highscore.split("\\s+");
-                
-                for(int i=0; i<list.size();i++)
-                {
-                    list.add(highscore);
-                }
-                Collections.sort(list);
-                System.out.printf("highest score %s\n",list);
-            }
-            scan.close();
-        }catch (Exception e){}
-        }
-        
     };
     ///////////////////////////////Special Items///////////////////////////////////////
     class SpecialItem extends Thread {
