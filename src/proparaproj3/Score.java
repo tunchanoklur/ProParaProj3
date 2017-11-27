@@ -71,8 +71,8 @@ import javax.swing.event.CaretListener;
                             player.PrintToFile();
                             player.setScore(0);
                             player.setName("");
-                            gamePage = new GamePlay(player);
                             Pframe.dispose();
+                            gamePage = new GamePlay(player);
                             dispose();
                         } catch (InterruptedException ex) {
                             Logger.getLogger(Score.class.getName()).log(Level.SEVERE, null, ex);

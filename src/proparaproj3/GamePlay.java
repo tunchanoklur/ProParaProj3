@@ -33,7 +33,7 @@ public class GamePlay extends JFrame {
     private int characterCurX = 700,characterspeed=20;
     private int dropWidth = 60, dropHeight = 60;
     private int dropCurX = 0;
-    private int time=120;
+    private int time=100;
     private boolean playhitsound =true,playing=true;
     private boolean left =false, right=false;
     private int score,item_num = 10;
@@ -48,7 +48,6 @@ public class GamePlay extends JFrame {
         
         contentpane = (JPanel) getContentPane();
         contentpane.setLayout(new BorderLayout());
-        addWindowListener( new MyWindowListener() );
         AddComponents(player);
         
         int bonus=1;
@@ -272,8 +271,6 @@ public class GamePlay extends JFrame {
                 dropLabel[id].setIcon(dropImg[new_tsum]);
                 score++;
                 scoreText.setText(Integer.toString(score));
-                /*highs = (Integer.toString(score));
-                getScore(highs);*/
                 validate();
             }
         }
@@ -353,24 +350,6 @@ public class GamePlay extends JFrame {
                 specialLabel[0].setIcon(specialImg[id]);
                 repaint();
             }
-        }
-    ////////////////////////////////////////Pop-up Score////////////////////////////////
-       
-    } 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    class MyWindowListener extends WindowAdapter//when we open / close the frame
-    {
-        public void windowClosing(WindowEvent e) {
-            playhitsound=false;
-            themeSound.stop();
-            JFrame frame = (JFrame) e.getWindow();
-            contentpane = (JPanel) frame.getContentPane();
-            JOptionPane.showMessageDialog(
-                    new JFrame(),
-                    "Total Score = " + score,
-                    "Catch Me : Disney",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-    };
-    
+        } 
+    }  
 }

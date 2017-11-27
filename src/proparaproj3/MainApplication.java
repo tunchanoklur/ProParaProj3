@@ -2,8 +2,11 @@ package proparaproj3;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import javax.swing.*;
 import java.util.logging.Level;
@@ -201,17 +204,17 @@ class SoundEffect {
 }
 
 class PlayerInfo{
-    private PrintWriter printer;
+    private BufferedWriter printer;
     private String name;
     private MyImageIcon character,background;
     private SoundEffect themesong;
     private int level,score;//0easy 1normal 2insane
     public PlayerInfo(){
-        //set default
         try {
-            printer = new PrintWriter("output.txt");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(GamePlay.class.getName()).log(Level.SEVERE, null, ex);
+            //set default
+            printer = new BufferedWriter(new FileWriter("output.txt", true));
+        } catch (IOException ex) {
+            Logger.getLogger(PlayerInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
         character = new MyImageIcon("picture/user_icon/user0.png");
         background = new MyImageIcon("picture/wallpaper/option_wall.png");
@@ -226,8 +229,14 @@ class PlayerInfo{
             case 1: lvl="Normal";break;
             default:lvl="Insane";break;
         }
-        printer.printf("%15s %3d %7s\n",name,score,lvl);
-        printer.flush();
+        String data = name+" "+lvl+" "+score;
+        try {
+            printer.write(data);
+            printer.newLine();
+            printer.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(PlayerInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void setCharacter(String c){
         character = new MyImageIcon(c);

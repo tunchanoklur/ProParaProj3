@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 public class Trophy extends JFrame{
-
     MainApplication     MainPage;
     private JPanel      contentpane;
     private JLabel      drawpane;
