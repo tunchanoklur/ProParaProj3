@@ -2,6 +2,9 @@ package proparaproj3;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +15,7 @@ public class MainApplication extends JFrame{
     HowTo howtoPage;
     Credit creditPage;
     Trophy highscorePage;
+    //JFrame frames = this;
     //components
     private JPanel contentpane;
     private JLabel drawpane;
@@ -81,7 +85,8 @@ public class MainApplication extends JFrame{
                     }
                 }
                 else charPage.setVisible(true);
-                setVisible(false);
+                //setVisible(false);
+                dispose();
             }
             public void mousePressed(MouseEvent e) {}
             public void mouseReleased(MouseEvent e) {}
@@ -196,17 +201,34 @@ class SoundEffect {
 }
 
 class PlayerInfo{
+    private PrintWriter printer;
     private String name;
     private MyImageIcon character,background;
     private SoundEffect themesong;
     private int level,score;//0easy 1normal 2insane
     public PlayerInfo(){
         //set default
+        try {
+            printer = new PrintWriter("output.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GamePlay.class.getName()).log(Level.SEVERE, null, ex);
+        }
         character = new MyImageIcon("picture/user_icon/user0.png");
         background = new MyImageIcon("picture/wallpaper/option_wall.png");
         themesong= new SoundEffect("sound/toystory.wav");
         level=0;
         score=0;
+    }
+    public void PrintToFile(){
+        String lvl;
+        
+        switch (level) {
+            case 0: lvl="Easy";break;
+            case 1: lvl="Normal";break;
+            default:lvl="Insane";break;
+        }
+        
+        printer.printf("%15s %3d %7s\n",name,score,lvl);
     }
     public void setCharacter(String c){
         character = new MyImageIcon(c);
@@ -240,5 +262,8 @@ class PlayerInfo{
     }
     public int giveScore(){
         return score;
+    }
+    public String giveName(){
+        return name;
     }
 }

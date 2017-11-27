@@ -30,25 +30,21 @@ import javax.swing.event.CaretListener;
             private int frameWidth = 684, frameHeight = 657;
             private String inputName;
 
-            public static void main(String[] args) {
-                new Score();
-            }
-            public Score() {
-                setTitle("Catch Me : Score");
+            public Score(JFrame Pframe,PlayerInfo player) {
+                super(Pframe,"Catch Me : Score",true);
                 setBounds(50, 50, frameWidth, frameHeight);
                 setResizable(false);
-                //setModal(true);
-                setVisible(true);
-                setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
                 contentpane = (JPanel) getContentPane();
                 contentpane.setLayout(new BorderLayout());
                 contentpane.setBackground(Color.pink);
-
-                AddComponents();
+                
+                AddComponents(Pframe,player);
+                setVisible(true);
             }
 
-            public void AddComponents() {
+            public void AddComponents(JFrame Pframe,PlayerInfo player) {
                 BG = new MyImageIcon("picture/wallpaper/star.png").resize(frameWidth, frameHeight);
                 drawpane = new JLabel();
                 drawpane.setIcon(BG);
@@ -59,6 +55,9 @@ import javax.swing.event.CaretListener;
                 home.addMouseListener(new MouseListener() {
                     public void mouseClicked(MouseEvent e) {
                         mainPage = new MainApplication();
+                        player.PrintToFile();
+                        Pframe.dispose();
+                        dispose();
                     }
                     public void mousePressed(MouseEvent e) {}
                     public void mouseReleased(MouseEvent e) {}
@@ -68,18 +67,28 @@ import javax.swing.event.CaretListener;
                 play = new JButton("Play agian");
                 play.addMouseListener(new MouseListener() {
                     public void mouseClicked(MouseEvent e) {
-                        //gamePage = new GamePlay(player); 
+                        try {
+                            player.PrintToFile();
+                            player.setScore(0);
+                            player.setName("");
+                            gamePage = new GamePlay(player);
+                            Pframe.dispose();
+                            dispose();
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Score.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                     public void mousePressed(MouseEvent e) {}
                     public void mouseReleased(MouseEvent e) {}
                     public void mouseEntered(MouseEvent e) {}
                     public void mouseExited(MouseEvent e) {}
                 });
+                
                 Score_word = new JLabel("SCORE");
                 Score_word.setBounds(205,130,300,80);
                 Score_word.setFont(new Font("Courier", Font.BOLD, 75));
                 
-                Score_points = new JLabel("50");
+                Score_points = new JLabel(Integer.toString( player.giveScore()));
                 Score_points.setBounds(265,225,300,110);
                 Score_points.setFont(new Font("Courier", Font.BOLD, 140));
                 
@@ -91,10 +100,9 @@ import javax.swing.event.CaretListener;
                 userName.setBounds(220,390,250,80);
                 userName.setFont(new Font("Courier", Font.BOLD, 35));
                 userName.addCaretListener(new CaretListener() {
-                    public void caretUpdate(CaretEvent e) {
-                        inputName = userName.getText();
-                        
-                        //System.out.printf(inputName);
+                    public void caretUpdate(CaretEvent e){
+                        player.setName(userName.getText());
+                        System.out.printf(player.giveName());
                     }
                 });
 

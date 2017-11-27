@@ -15,13 +15,15 @@ import javax.swing.event.CaretListener;
 
 public class GamePlay extends JFrame {
     // components
+    private JFrame frame = this;
     private JPanel contentpane;
     private JLabel drawpane;
     private JTextField scoreText,Time;
     private JLabel characterLabel, dropLabel[],specialLabel[];
     private MyImageIcon backgroundImg, characterImg, dropImg[],specialImg[];
     private SoundEffect hitSound[] = new SoundEffect[4], themeSound;
-    
+    private Score scoreModal;
+   
     // working variables - adjust the values as you want
     private Random rand = new Random();
     private DropCharacter dropclass[];
@@ -37,15 +39,10 @@ public class GamePlay extends JFrame {
     private int score,item_num = 10;
     private PrintWriter printtofile;
     private String highs="";
-    private String outfile = "output.txt";    
+    private String outfile = "output.txt";
     private String userName;
     
     public GamePlay(PlayerInfo player) throws InterruptedException{
-        try {
-            printtofile = new PrintWriter(new File("output.txt"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(GamePlay.class.getName()).log(Level.SEVERE, null, ex);
-        }
         setTitle("Catch Me : Disney");
         setBounds(0, 0, frameWidth, frameHeight);
         setResizable(false);
@@ -218,10 +215,11 @@ public class GamePlay extends JFrame {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 } // end while
+                themeSound.stop();
                 player.setScore(score);
                 System.out.println("final score:"+score);
+                scoreModal = new Score(frame,player);
             } // end run
         }; // end thread creation
         characterThread.start();
@@ -268,8 +266,8 @@ public class GamePlay extends JFrame {
                 dropLabel[id].setIcon(dropImg[new_tsum]);
                 score++;
                 scoreText.setText(Integer.toString(score));
-                highs = (Integer.toString(score));
-                getScore(highs);
+                /*highs = (Integer.toString(score));
+                getScore(highs);*/
                 validate();
             }
         }

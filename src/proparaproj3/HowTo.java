@@ -22,6 +22,7 @@ public class HowTo extends JDialog{
         setTitle("Catch Me : How To Play?");
         setBounds(50, 50, frameWidth, frameHeight);
         setResizable(false);
+        setFocusable(true);
         //setModal(true);
         setVisible(true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
