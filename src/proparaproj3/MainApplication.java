@@ -50,7 +50,6 @@ public class MainApplication extends JFrame{
     }
     public void AddComponents() {
         main_bg = new MyImageIcon("picture/wallpaper/main_bg.png").resize(frameWidth,frameHeight);;
-        
         for(int i=0;i<2;i++){
             playImg[i] = new MyImageIcon("picture/button/play"+i+".png");
             howtoImg[i] = new MyImageIcon("picture/button/howto"+i+".png");
@@ -124,6 +123,8 @@ public class MainApplication extends JFrame{
                 /*Link to page highscore*/
                 if(highscorePage==null)highscorePage = new Trophy();
                 else highscorePage.setVisible(true);
+                main_sound.stop();
+                dispose();
             }
             public void mousePressed(MouseEvent e) {}
             public void mouseReleased(MouseEvent e) {}
@@ -144,6 +145,7 @@ public class MainApplication extends JFrame{
             public void mousePressed(MouseEvent e) {}
             public void mouseReleased(MouseEvent e) {}
         });
+        
         playButton.setBounds(800,500,400,200);
         contentpane.add(playButton);
         howtoButton.setBounds(1275,750,200,200);
@@ -200,78 +202,5 @@ class SoundEffect {
 
     public void stop() {
         audio.stop();
-    }
-}
-
-class PlayerInfo{
-    private BufferedWriter printer;
-    private String name;
-    private MyImageIcon character,background;
-    private SoundEffect themesong;
-    private int level,score;//0easy 1normal 2insane
-    public PlayerInfo(){
-        try {
-            //set default
-            printer = new BufferedWriter(new FileWriter("output.txt", true));
-        } catch (IOException ex) {
-            Logger.getLogger(PlayerInfo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        character = new MyImageIcon("picture/user_icon/user0.png");
-        background = new MyImageIcon("picture/wallpaper/option_wall.png");
-        themesong= new SoundEffect("sound/toystory.wav");
-        level=0;
-        score=0;
-    }
-    public void PrintToFile(){
-        String lvl;
-        switch (level) {
-            case 0: lvl="Easy";break;
-            case 1: lvl="Normal";break;
-            default:lvl="Insane";break;
-        }
-        String data = name+" "+lvl+" "+score;
-        try {
-            printer.write(data);
-            printer.newLine();
-            printer.flush();
-        } catch (IOException ex) {
-            Logger.getLogger(PlayerInfo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    public void setCharacter(String c){
-        character = new MyImageIcon(c);
-    }
-    public void setBackground(MyImageIcon bg){
-        background = bg;
-    }
-    public void setThemesong(SoundEffect song){
-        themesong = song;
-    }
-    public void setLevel(int lvl){
-        level = lvl;
-    }
-    public void setScore(int s){
-        score = s;
-    }
-    public void setName(String n){
-        name = n;
-    }
-    public int giveLevel(){
-        return level;
-    }
-    public MyImageIcon giveBackground(){
-        return background;
-    }
-    public MyImageIcon giveCharacter(){
-        return character;
-    }
-    public SoundEffect giveThemesong(){
-        return themesong;
-    }
-    public int giveScore(){
-        return score;
-    }
-    public String giveName(){
-        return name;
     }
 }
