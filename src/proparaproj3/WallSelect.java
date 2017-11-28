@@ -46,8 +46,8 @@ public class WallSelect extends JFrame{
     public void AddComponents(PlayerInfo player){
         BG = new MyImageIcon("picture/wallpaper/selectWall.png").resize(frameWidth,frameHeight);
         nextPage = new MyImageIcon("picture/button/forward.png").resize(200,200);
-        soundImg = new MyImageIcon("picture/button/sound.png");//.resize(200,200);
-        wallImg = new MyImageIcon("picture/button/wall.png");//.resize(200,200);
+        soundImg = new MyImageIcon("picture/button/sound.png");//.resize(240,120);
+        wallImg = new MyImageIcon("picture/button/wall.png");//.resize(300,150);
         aladdin = new MyImageIcon("picture/wallpaper/aladin_wall.png").resize(frameWidth,frameHeight);
         mulan = new MyImageIcon("picture/wallpaper/mulan_wall.png").resize(frameWidth,frameHeight);
         mermiad = new MyImageIcon("picture/wallpaper/arial_wall.png").resize(frameWidth,frameHeight);
@@ -150,13 +150,13 @@ public class WallSelect extends JFrame{
         soundIcon = new JLabel(soundImg);
         soundIcon.setBounds(0, 0, 200, 200);
         wallIcon = new JLabel(wallImg);
-        wallIcon.setBounds(1800,0, 200, 200);
-        next.setBounds(1600,700,400,200);
+        wallIcon.setBounds(1780,0, 200, 200);
+        next.setBounds(1680,750,400,200);
         musicList.setBounds(0, 200, 200, 210);
         musicList.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setSize(combo.getWidth(),combo.getHeight());
-        combo.setBounds(1730,200,200,100);
+        combo.setBounds(1780,200,200,100);
         contentpane.add(next);
         contentpane.add(soundIcon);
         contentpane.add(wallIcon);
