@@ -338,7 +338,7 @@ public class GamePlay extends JFrame {
                         if (playhitsound) {
                             hitSound[3].playOnce();
                         }
-                        if(characterspeed<350)characterspeed+=40;
+                        if(characterspeed<350)characterspeed+=80;
                         break;
                         
                 }
