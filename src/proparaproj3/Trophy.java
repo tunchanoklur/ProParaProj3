@@ -27,9 +27,9 @@ public class Trophy extends JFrame{
     private int frameWidth = 2000, frameHeight = 1000;
     private Scanner scan;
     private ArrayList<PlayerInfo> players;
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new Trophy();
-    }
+    }*/
     public Trophy(){
         setTitle("High Score");
         setBounds(0, 0, frameWidth, frameHeight);
@@ -93,7 +93,7 @@ public class Trophy extends JFrame{
             String data =(i+1)+") "+players.get(i).giveName()+"  "+lvl+"  "+players.get(i).giveScore();
             playerLabel[i]=new JLabel(data);
             playerLabel[i].setBounds(830,y,1500,90);
-            playerLabel[i].setFont(new Font("Courier", Font.BOLD, 85));
+            playerLabel[i].setFont(new Font("Courier", Font.BOLD, 65));
             playerLabel[i].setForeground(Color.white);
             contentpane.add(playerLabel[i]);
             y+=125;

@@ -27,6 +27,7 @@ import javax.swing.event.CaretListener;
             private JTextField userName;
             private JButton home, play;
             private MyImageIcon BG;
+            private SoundEffect   readyGo;
             private int frameWidth = 684, frameHeight = 657;
             private String inputName;
 
@@ -45,6 +46,7 @@ import javax.swing.event.CaretListener;
             }
 
             public void AddComponents(JFrame Pframe,PlayerInfo player) {
+                readyGo = new SoundEffect("sound/readyyy.wav");
                 BG = new MyImageIcon("picture/wallpaper/star.png").resize(frameWidth, frameHeight);
                 drawpane = new JLabel();
                 drawpane.setIcon(BG);
@@ -72,6 +74,7 @@ import javax.swing.event.CaretListener;
                             player.setScore(0);
                             player.setName("");
                             Pframe.dispose();
+                            readyGo.playOnce();
                             gamePage = new GamePlay(player);
                             dispose();
                         } catch (InterruptedException ex) {
