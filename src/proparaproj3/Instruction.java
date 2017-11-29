@@ -34,11 +34,9 @@ public class Instruction extends JDialog{
         instruction_bg = new MyImageIcon("picture/wallpaper/emp_instruction.png").resize(frameWidth,frameHeight);
         backImg = new MyImageIcon("picture/button/backward.png").resize(60,60);
         gameplayImg[0] = new MyImageIcon("picture/button/LRbutton.gif");
-        gameplayImg[1] = new MyImageIcon("picture/tsum/special0.gif");
-        gameplayImg[2] = new MyImageIcon("picture/tsum/special1.gif");
-        gameplayImg[3] = new MyImageIcon("picture/tsum/special2.gif");
-        gameplayImg[4] = new MyImageIcon("picture/tsum/tsum_time.png").resize(75,91);
-        
+        for(int i =0; i<5; i++){
+            gameplayImg[i] = new MyImageIcon("picture/tsum/special"+i+".gif");
+        }
         
         LRbutton = new JLabel(gameplayImg[0]);
         Bomb = new JLabel(gameplayImg[1]);
