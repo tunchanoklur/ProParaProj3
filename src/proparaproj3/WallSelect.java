@@ -117,6 +117,7 @@ public class WallSelect extends JFrame{
         });
         
         combo = new JComboBox(name);
+        combo.setSelectedIndex(-1);
         combo.addItemListener( new ItemListener() {
             public void itemStateChanged( ItemEvent e )
             {
@@ -150,13 +151,13 @@ public class WallSelect extends JFrame{
         soundIcon = new JLabel(soundImg);
         soundIcon.setBounds(0, 0, 200, 200);
         wallIcon = new JLabel(wallImg);
-        wallIcon.setBounds(1780,0, 200, 200);
-        next.setBounds(1680,750,400,200);
+        wallIcon.setBounds(1700,0, 200, 200);
+        next.setBounds(1600,750,400,200);
         musicList.setBounds(0, 200, 200, 210);
         musicList.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setFont(new Font("Courier", Font.BOLD, 30));
         combo.setSize(combo.getWidth(),combo.getHeight());
-        combo.setBounds(1780,200,200,100);
+        combo.setBounds(1700,200,200,100);
         contentpane.add(next);
         contentpane.add(soundIcon);
         contentpane.add(wallIcon);
