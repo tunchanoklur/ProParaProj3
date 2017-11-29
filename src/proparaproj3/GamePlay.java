@@ -21,7 +21,7 @@ public class GamePlay extends JFrame {
     private JTextField scoreText,Time;
     private JLabel characterLabel, dropLabel[],specialLabel[];
     private MyImageIcon backgroundImg, characterImg, dropImg[],specialImg[];
-    private SoundEffect hitSound[] = new SoundEffect[4], themeSound;
+    private SoundEffect hitSound[] = new SoundEffect[4];
     private Score scoreModal;
    
     // working variables - adjust the values as you want
@@ -144,11 +144,9 @@ public class GamePlay extends JFrame {
         hitSound[0] = new SoundEffect("sound/wingwing.wav");
         hitSound[1] = new SoundEffect("sound/laugh.wav");
         hitSound[2] = new SoundEffect("sound/storm.wav");
-        themeSound = player.giveThemesong();
         hitSound[3]=new SoundEffect("sound/flasd_edit.wav");
         hitSound[3]=new SoundEffect("sound/flash_2.wav");
-        themeSound = new SoundEffect("sound/toystory.wav");
-        themeSound.playLoop();
+        player.giveThemesong().playLoop();
         
         Time = new JTextField(Integer.toString(time),5);
         Time.setEditable(false);
@@ -221,7 +219,7 @@ public class GamePlay extends JFrame {
                         e.printStackTrace();
                     }
                 } // end while
-                themeSound.stop();
+                player.giveThemesong().stop();
                 player.setScore(score*bonus);
                 System.out.println("final score:"+score);
                 scoreModal = new Score(frame,player);
@@ -253,8 +251,8 @@ public class GamePlay extends JFrame {
                         catch (InterruptedException e) {}
                         }
                     dropLabel[id].setBounds(dropCurX, dropCurY, dropWidth, dropHeight);
-                    repaint();
                     this.collision();
+                    repaint();
                     try {
                         Thread.sleep(this.speed);
                     } catch (InterruptedException e) {
@@ -331,7 +329,7 @@ public class GamePlay extends JFrame {
                         if (playhitsound) {
                             hitSound[2].playOnce();
                         }
-                        if(characterspeed>100)characterspeed-=30;
+                        if(characterspeed>100)characterspeed-=60;
                         break;
                     default:
                         //the flash
