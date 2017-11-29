@@ -9,3 +9,5 @@ test Insane 84
 test Insane 92
 hiw Insane 86
 hungry Insane 58
+kiikiki Insane 64
+kik Insane 88
