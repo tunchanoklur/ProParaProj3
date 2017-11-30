@@ -2,12 +2,6 @@ package proparaproj3;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
