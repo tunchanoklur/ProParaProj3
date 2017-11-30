@@ -1,13 +1,2 @@
-test1 Insane 68
-testt Insane 56
-test3 Insane 68
-Caramel Insane 98
-kik Insane 90
-Carafemale Insane 108
-ggez Insane 72
-test Insane 84
-test Insane 92
-hiw Insane 86
-hungry Insane 58
-kiikiki Insane 64
-kik Insane 88
+Caramel Insane 138
+hi Insane 136
